@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+    <category
+            id="de.mtrail.goodies"
+            name="Goodies"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="de.mtrail.goodies.internal.GoodiesPreferencePage"
+            id="de.mtrail.goodies.internal.cimonitor.preferences.CIPreferencePage"
+            name="Goodies">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="de.mtrail.goodies.internal.launch.RcsServerProcessLauncher"
+            id="de.mtrail.goodies.rcsServerProcess"
+            modes="run,debug"
+            name="RCS Server Process"
+            public="true"
+            sourceLocatorId="org.eclipse.pde.ui.launcher.PDESourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+      </launchConfigurationType>
+      <launchConfigurationType
+            delegate="de.mtrail.goodies.internal.launch.RcsJUnitPluginTestLauncher"
+            delegateDescription="RCS JUnit Plug-in Launcher führt einen JUnit Test als Integrationstest aus"
+            id="de.mtrail.goodies.rcsJUnitPluginTest"
+            modes="run,debug"
+            name="RCS JUnit Plug-in Test"
+            public="true"
+            sourceLocatorId="org.eclipse.pde.ui.launcher.PDESourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchDelegates">
+      <launchDelegate
+            delegate="org.eclipse.eclemma.core.launching.EclipseLauncher"
+            id="de.mtrail.goodies.rcsServerProcess.launchDelegate"
+            modes="coverage"
+            name="RCS Server Process"
+            type="de.mtrail.goodies.rcsServerProcess">
+      </launchDelegate>
+      <launchDelegate
+            delegate="org.eclipse.eclemma.core.launching.EclipseLauncher"
+            delegateDescription=" "
+            id="de.mtrail.goodies.rcsJUnitPluginTest.launchDelegate"
+            modes="coverage"
+            name="RCS JUnit Plug-in Test"
+            type="de.mtrail.goodies.rcsJUnitPluginTest">
+      </launchDelegate>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="de.mtrail.goodies.internal.launch.RcsServerProcessTabGroup"
+            id="de.mtrail.goodies.rcsServerProcess"
+            type="de.mtrail.goodies.rcsServerProcess">
+      </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="de.mtrail.goodies.internal.launch.RcsJUnitPluginTestTabGroup"
+            description="JUnit als RCS Integrationstest ausführen"
+            id="de.mtrail.goodies.rcsJUnitPluginTest"
+            type="de.mtrail.goodies.rcsJUnitPluginTest">
+      </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="org.eclipse.eclemma.ui.launching.CoverageTabGroup"
+            id="de.mtrail.goodies.rcsServerProcess.coverage"
+            type="de.mtrail.goodies.rcsServerProcess">
+         <launchMode
+               description="RCS Server Process"
+               mode="coverage">
+         </launchMode>
+      </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="org.eclipse.eclemma.ui.launching.CoverageTabGroup"
+            description="JUnit als RCS Integrationstest ausführen"
+            id="de.mtrail.goodies.rcsJUnitPluginTest.coverage"
+            type="de.mtrail.goodies.rcsJUnitPluginTest">
+         <launchMode
+               description="RCS JUnit Plug-in Test"
+               mode="coverage">
+         </launchMode>
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="de.mtrail.goodies.rcsServerProcess"
+            icon="icons/obj16/rcs_server_process.png"
+            id="de.mtrail.goodies.rcsServerProcess">
+      </launchConfigurationTypeImage>
+      <launchConfigurationTypeImage
+            configTypeID="de.mtrail.goodies.rcsJUnitPluginTest"
+            icon="icons/obj16/rcs_junit_test.png"
+            id="de.mtrail.goodies.rcsJUnitPluginTest">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDirect"
+            icon="icons/obj16/rcs_server_process.png"
+            id="de.mtrail.goodies.rcsServerProcessFromShellScriptDirect"
+            label="RCS Server Process"
+            modes="run,debug,coverage">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+                        <test
+                              property="org.eclipse.core.resources.name"
+                              value="*.sh">
+                        </test>
+                     </adapt>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDialog"
+            icon="icons/obj16/rcs_server_process.png"
+            id="de.mtrail.goodies.rcsServerProcessFromShellScriptDialog"
+            label="RCS Server Process..."
+            modes="run,debug,coverage">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+                        <test
+                              property="org.eclipse.core.resources.name"
+                              value="*.sh">
+                        </test>
+                     </adapt>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="de.mtrail.goodies.internal.launch.RcsJUnitPluginTestLaunchShortcut"
+            description="Führt einen JUnit Plug-In Test als Integrationstest aus"
+            icon="icons/obj16/rcs_junit_test.png"
+            id="de.mtrail.goodies.rcsJUnitPluginTestShortcut"
+            label="RCS JUnit Plug-in Test"
+            modes="run, debug,coverage">
+         <contextualLaunch>
+            <enablement>
+               <with variable="selection">
+                  <count value="1"/>
+               	  <iterate>
+                      <adapt type="org.eclipse.jdt.core.IJavaElement">
+		                <test property="org.eclipse.jdt.core.isInJavaProjectWithNature" value="org.eclipse.pde.PluginNature"/>
+		                <test property="org.eclipse.jdt.core.hasTypeOnClasspath" value="junit.framework.Test"/>
+		                <test property="org.eclipse.jdt.junit.canLaunchAsJUnit" forcePluginActivation="true"/>
+		             </adapt>
+		          </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS Server Process"
+            id="de.mtrail.goodies.rcsServerProcessFromShellScriptDirect.coverage"
+            name="RCS Server Process">
+      </command>
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS Server Process"
+            id="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDialog.coverage"
+            name="RCS Server Process">
+      </command>      
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS JUnit Plug-in Test"
+            id="de.mtrail.goodies.rcsJUnitPluginTestShortcut.coverage"
+            name="RCS JUnit Plug-in Test">
+      </command>
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS Server Process"
+            id="de.mtrail.goodies.rcsServerProcessFromShellScriptDirect.run"
+            name="RCS Server Process">
+      </command>
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS Server Process"
+            id="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDialog.run"
+            name="RCS Server Process">
+      </command>      
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS JUnit Plug-in Test"
+            id="de.mtrail.goodies.rcsJUnitPluginTestShortcut.run"
+            name="RCS JUnit Plug-in Test">
+      </command>
+	  <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS Server Process"
+            id="de.mtrail.goodies.rcsServerProcessFromShellScriptDirect.debug"
+            name="RCS Server Process">
+      </command>
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS Server Process"
+            id="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDialog.debug"
+            name="RCS Server Process">
+      </command>      
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            description="RCS JUnit Plug-in Test"
+            id="de.mtrail.goodies.rcsJUnitPluginTestShortcut.debug"
+            name="RCS JUnit Plug-in Test">
+      </command>
+      <command
+            description="Workspace Support"
+            id="de.mtrail.goodies.commands.closeProjects"
+            name="Workspace Support">
+      </command>
+      <command
+            description="Create Working Set"
+            id="de.mtrail.goodies.command.createws"
+            name="Create Working Set">
+      </command>  
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="de.mtrail.goodies.rcsJUnitPluginTestShortcut.run"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+X Y">
+      </key>
+      <key
+            commandId="de.mtrail.goodies.rcsJUnitPluginTestShortcut.debug"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+D Y">
+      </key>
+      <key
+            commandId="de.mtrail.goodies.rcsJUnitPluginTestShortcut.coverage"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+E Y">
+      </key>
+      <key
+            commandId="de.mtrail.goodies.rcsServerProcessFromShellScriptDirect.run"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+X B">
+      </key>
+      <key
+            commandId="de.mtrail.goodies.rcsServerProcessFromShellScriptDirect.debug"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+D B">
+      </key>      
+      <key
+            commandId="de.mtrail.goodies.rcsServerProcessFromShellScriptDirect.coverage"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+E B">
+      </key>
+      <key
+            commandId="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDialog.run"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+X C">
+      </key>
+      <key
+            commandId="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDialog.debug"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+D C">
+      </key>
+      <key
+            commandId="de.mtrail.goodies.internal.launch.RcsServerProcessFromShellScriptDialog.coverage"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+M2+E C">
+      </key>      
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="de.mtrail.goodies.internal.GoodiesPreferencesInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.debug.ui.LaunchingPreferencePage"
+            class="de.mtrail.goodies.internal.launch.RcsServerProcessLaunchingPreferencePage"
+            id="de.mtrail.goodies.launching.rcsserverprocess"
+            name="RCS Server Process">
+         <keywordReference
+               id="de.mtrail.goodies.rcsprocesslaunchingkeywords">
+         </keywordReference>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.keywords">
+      <keyword
+            id="de.mtrail.goodies.rcsprocesslaunchingkeywords"
+            label="rcs server process launching local">
+      </keyword>
+   </extension>
+   <extension
+         point="org.eclipse.core.variables.dynamicVariables">
+      <variable
+            description="Resolver for rcs.process.configlocations"
+            name="rcs.process.configlocations"
+            resolver="de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver"
+            supportsArgument="false">
+      </variable>
+      <variable
+            description="Resolver for rcs.process.environment"
+            name="rcs.process.environment"
+            resolver="de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver"
+            supportsArgument="false">
+      </variable>
+      <variable
+            description="Resolver for rcs.process.cluster"
+            name="rcs.process.cluster"
+            resolver="de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver"
+            supportsArgument="false">
+      </variable>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.trim.status">
+         <toolbar
+               id="de.mtrail.goodies.contribution.environment"
+               label="Environment Auswahl">
+            <control
+                  class="de.mtrail.goodies.contribution.EnvironmentDisplayControl"
+                  id="de.mtrail.goodies.contribution.environmentDisplayControl">
+            </control>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="ch.softbee.updatetarget.toolbars.updateTargetToolbar">
+            <command
+                  commandId="de.mtrail.goodies.commands.closeProjects"
+                  icon="icons/obj16/close_project.png"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.jdt.ui.PackageExplorer?endof=group.edit">
+         <command
+               commandId="de.mtrail.goodies.command.createws"
+               label="Create WorkingSet"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.pde.core.targets">
+      <target
+            definition="rcsd-trunk.target"
+            id="de.mtrail.goodies.rcsd.trunk"
+            name="RCS Trunk Target">
+      </target>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="de.mtrail.goodies.internal.workspacesupport.WorkspaceConfigurationHandler"
+            commandId="de.mtrail.goodies.commands.closeProjects">
+      </handler>
+      <handler
+            class="de.mtrail.goodies.internal.workspacesupport.CreateWorkingSetHandler"
+            commandId="de.mtrail.goodies.command.createws">
+      </handler>
+   </extension>
+</plugin>
