@@ -26,6 +26,7 @@ import de.mtrail.goodies.internal.workspacesupport.jobs.OpenCloseProjectsJob;
 import de.mtrail.goodies.internal.workspacesupport.jobs.ShowSummaryJob;
 import de.mtrail.goodies.internal.workspacesupport.jobs.SortProjectsIntoWorkingSetsJob;
 import de.mtrail.goodies.internal.workspacesupport.model.BundleConfig;
+import de.mtrail.goodies.internal.workspacesupport.util.ErrorHandler;
 import de.mtrail.goodies.internal.workspacesupport.util.PreferenceSupport;
 import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
 
@@ -49,14 +50,7 @@ public class WorkspaceConfigurationHandler extends AbstractHandler {
     }
     // Things might happen. We catch, until we know who is the receiver of our problems.
     catch (final Exception e) {
-      ResourcesPlugin.getPlugin().getLog().log(//
-          new Status(IStatus.ERROR, "de.mtrail.goodies", //
-              "Something went wrong: " + e.getLocalizedMessage() + " " + e.getCause(), e));
-
-      final MessageBox dialog = new MessageBox(HandlerUtil.getActiveShell(event), SWT.ICON_ERROR | SWT.OK);
-      dialog.setText("Something went wrong: " + e.getLocalizedMessage() + " " + e.getCause());
-      dialog.setMessage(e.getLocalizedMessage());
-      dialog.open();
+    	ErrorHandler.handle(e);
     }
     return null;
   }

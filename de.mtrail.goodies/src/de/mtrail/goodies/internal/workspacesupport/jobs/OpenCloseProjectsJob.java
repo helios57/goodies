@@ -26,7 +26,9 @@ import org.eclipse.ui.internal.PartSite;
 import de.mtrail.goodies.internal.workspacesupport.model.BundleConfig;
 import de.mtrail.goodies.internal.workspacesupport.model.State;
 import de.mtrail.goodies.internal.workspacesupport.model.WorkspaceProject;
+import de.mtrail.goodies.internal.workspacesupport.util.AbstractWorkspaceJobWithSummary;
 import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
+import de.mtrail.goodies.internal.workspacesupport.util.WorkspaceUtility;
 
 @SuppressWarnings("restriction")
 public class OpenCloseProjectsJob extends AbstractWorkspaceJobWithSummary {
@@ -50,7 +52,7 @@ public class OpenCloseProjectsJob extends AbstractWorkspaceJobWithSummary {
     final List<WorkspaceProject> projectsToOpen = new ArrayList<>();
     final List<WorkspaceProject> projectsToClose = new ArrayList<>();
 
-    Map<String, IProject> projectIdx = WorkspaceProject.createWorkspaceProjectIndex();
+    Map<String, IProject> projectIdx = WorkspaceUtility.createWorkspaceProjectIndex();
 
     findProjectsToCloseAndOpen(workspaceConfiguration, projectIdx, projectsToClose, projectsToOpen);
 

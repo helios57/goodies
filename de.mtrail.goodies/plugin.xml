@@ -386,13 +386,16 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.jdt.ui.PackageExplorer?endof=group.edit">
+            locationURI="popup:org.eclipse.pde.ui.tools">
          <command
                commandId="de.mtrail.goodies.command.createws"
                label="Create WorkingSet"
                style="push">
+                <visibleWhen
+                  checkEnabled="true">
+                </visibleWhen>
          </command>
-      </menuContribution>
+      </menuContribution>      
    </extension>
    <extension
          point="org.eclipse.pde.core.targets">
