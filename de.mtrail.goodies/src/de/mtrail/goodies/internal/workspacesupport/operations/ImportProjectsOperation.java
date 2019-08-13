@@ -1,4 +1,4 @@
-package de.mtrail.goodies.internal.workspacesupport.jobs.operations;
+package de.mtrail.goodies.internal.workspacesupport.operations;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,8 +17,9 @@ import org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob;
 import de.mtrail.goodies.internal.GoodiesPreferenceConstants;
 import de.mtrail.goodies.internal.workspacesupport.model.BundleConfig;
 import de.mtrail.goodies.internal.workspacesupport.model.State;
-import de.mtrail.goodies.internal.workspacesupport.model.WorkspaceProject;
 import de.mtrail.goodies.internal.workspacesupport.util.PreferenceSupport;
+import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollectorAdapter;
+import de.mtrail.goodies.internal.workspacesupport.util.WorkspaceUtility;
 
 /**
  * This Operation is responsible to import all projects mentionened in the workspace configuration file, but aren't imported yet into the
@@ -60,7 +61,7 @@ public final class ImportProjectsOperation {
 
   public void init() {
 
-    projectIdx = WorkspaceProject.createWorkspaceProjectIndex();
+    projectIdx = WorkspaceUtility.createWorkspaceProjectIndex();
 
     bundlesNotInWorkspace = workspaceConfiguration.values().stream().//
         filter(b -> shouldBeImported(b)).collect(Collectors.toList());
