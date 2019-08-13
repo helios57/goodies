@@ -1,4 +1,4 @@
-package de.mtrail.goodies.internal.workspacesupport.jobs.operations;
+package de.mtrail.goodies.internal.workspacesupport.util;
 
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;

@@ -74,7 +74,7 @@ public class GoodiesPlugin extends AbstractUIPlugin {
   public ImageDescriptor getImageDescriptor(String path) {
     ImageRegistry reg = getImageRegistry();
     ImageDescriptor descr = reg.getDescriptor(path);
-    if (descr == null) {
+    if (descr == null && reg.get(path) == null) {
       reg.put(path, descr = imageDescriptorFromPlugin(getBundle().getSymbolicName(), path));
     }
     return descr;

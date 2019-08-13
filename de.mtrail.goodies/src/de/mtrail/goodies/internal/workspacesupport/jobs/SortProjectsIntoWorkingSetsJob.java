@@ -20,9 +20,14 @@ import org.eclipse.ui.IWorkingSetManager;
 import org.eclipse.ui.PlatformUI;
 
 import de.mtrail.goodies.internal.workspacesupport.model.BundleConfig;
-import de.mtrail.goodies.internal.workspacesupport.model.WorkspaceProject;
+import de.mtrail.goodies.internal.workspacesupport.util.AbstractWorkspaceJobWithSummary;
 import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
+import de.mtrail.goodies.internal.workspacesupport.util.WorkspaceUtility;
 
+/**
+ * FIXME: Translate
+ *
+ */
 @SuppressWarnings("restriction")
 public class SortProjectsIntoWorkingSetsJob extends AbstractWorkspaceJobWithSummary {
 
@@ -44,7 +49,7 @@ public class SortProjectsIntoWorkingSetsJob extends AbstractWorkspaceJobWithSumm
     final IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
     final Map<String, IWorkingSet> existingWorkingIdx = createExistingWorkingSetsIdx(workingSetManager);
 
-    Map<String, IProject> projectIdx = WorkspaceProject.createWorkspaceProjectIndex();
+    Map<String, IProject> projectIdx = WorkspaceUtility.createWorkspaceProjectIndex();
 
     // Create "workIndex", or all workingSet Names from the workspace configuration mapped to the IProject instances of thw workspace
     final Map<String, List<IProject>> workingSetsToIProjectsIdx = createWsIndex(workspaceConfiguration, projectIdx);

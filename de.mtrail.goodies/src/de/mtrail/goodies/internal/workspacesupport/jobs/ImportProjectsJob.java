@@ -6,11 +6,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 
-import de.mtrail.goodies.internal.workspacesupport.jobs.operations.ImportProjectsOperation;
-import de.mtrail.goodies.internal.workspacesupport.jobs.operations.SummaryCollectorAdapter;
 import de.mtrail.goodies.internal.workspacesupport.model.BundleConfig;
+import de.mtrail.goodies.internal.workspacesupport.operations.ImportProjectsOperation;
+import de.mtrail.goodies.internal.workspacesupport.util.AbstractWorkspaceJobWithSummary;
 import de.mtrail.goodies.internal.workspacesupport.util.PreferenceSupport;
 import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
+import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollectorAdapter;
 
 /**
  * This Job uses the custom {@link #ImportProjectsJob(String, Map, SummaryCollector, PreferenceSupport)} to import all projects not in

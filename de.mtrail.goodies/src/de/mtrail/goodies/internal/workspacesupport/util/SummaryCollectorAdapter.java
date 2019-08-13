@@ -1,9 +1,9 @@
-package de.mtrail.goodies.internal.workspacesupport.jobs.operations;
+package de.mtrail.goodies.internal.workspacesupport.util;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 
-import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
+import de.mtrail.goodies.internal.workspacesupport.operations.ImportProjectsOperation;
 
 /**
  * The {@link SummaryCollectorAdapter} allows you to combine the Listening to operational feedback from the {@link ImportProjectsOperation}

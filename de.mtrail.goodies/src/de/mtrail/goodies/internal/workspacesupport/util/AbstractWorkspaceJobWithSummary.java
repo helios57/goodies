@@ -1,12 +1,9 @@
-package de.mtrail.goodies.internal.workspacesupport.jobs;
+package de.mtrail.goodies.internal.workspacesupport.util;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.Job;
-
-import de.mtrail.goodies.internal.workspacesupport.jobs.operations.WorkspaceMutexRule;
-import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
 
 /**
  * A simple Eclipse Job, which <br>

@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.swt.widgets.Display;
 
+import de.mtrail.goodies.internal.workspacesupport.util.AbstractWorkspaceJobWithSummary;
 import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
 
 /**
