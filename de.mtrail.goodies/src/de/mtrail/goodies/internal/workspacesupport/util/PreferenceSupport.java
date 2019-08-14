@@ -12,7 +12,7 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import de.mtrail.goodies.internal.GoodiesPreferenceConstants;
 
 /**
- * This class is responsible to ensure properties required by the Goodies Bundle are being set accordingly. This class will also handle
+ * This class is responsible to ensure properties required by the Goodies Bundle are being set accordingly. This class will (in the near future) also handle
  * Eclipse specific settings which are benefitial for certain requirements during Developement in RCS.
  */
 public class PreferenceSupport {
