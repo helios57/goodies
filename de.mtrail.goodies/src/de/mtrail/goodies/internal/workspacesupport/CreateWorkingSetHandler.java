@@ -12,14 +12,14 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
 
 import de.mtrail.goodies.internal.workspacesupport.operations.CreateWorkingSetOperation;
-import de.mtrail.goodies.internal.workspacesupport.util.FeatureEnablement;
+import de.mtrail.goodies.internal.workspacesupport.util.FeatureUtility;
 
 /**
  * This handler creates WorkingSets from selected feature projects. Supports multi-select.
  */
 public class CreateWorkingSetHandler extends AbstractHandler {
 
-	private final FeatureEnablement featureEnablement = new FeatureEnablement();
+	private final FeatureUtility featureEnablement = new FeatureUtility();
 	private final CreateWorkingSetOperation createWorkingSetOperation = new CreateWorkingSetOperation();
 
 	@Override
