@@ -15,7 +15,8 @@ import de.mtrail.goodies.internal.workspacesupport.operations.CreateWorkingSetOp
 import de.mtrail.goodies.internal.workspacesupport.util.FeatureUtility;
 
 /**
- * This handler creates WorkingSets from selected feature projects. Supports multi-select.
+ * This handler creates WorkingSets from selected feature projects. Supports
+ * multi-select.
  */
 public class CreateWorkingSetHandler extends AbstractHandler {
 
@@ -33,7 +34,7 @@ public class CreateWorkingSetHandler extends AbstractHandler {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public boolean isEnabled() {
 		return featureEnablement.isFeatureProjectSelected();

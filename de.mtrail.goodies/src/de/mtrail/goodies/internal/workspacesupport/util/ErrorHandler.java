@@ -10,16 +10,16 @@ import org.eclipse.swt.widgets.MessageBox;
 public class ErrorHandler {
 
 	public static void handle(Exception e) {
-	      ResourcesPlugin.getPlugin().getLog().log(//
-	              new Status(IStatus.ERROR, "de.mtrail.goodies", //
-	                  "Something went wrong: " + e.getLocalizedMessage() + " " + e.getCause(), e));
+		ResourcesPlugin.getPlugin().getLog().log(//
+				new Status(IStatus.ERROR, "de.mtrail.goodies", //
+						"Something went wrong: " + e.getLocalizedMessage() + " " + e.getCause(), e));
 
-	          final MessageBox dialog = new MessageBox(//
-	        		  Display.getDefault().getActiveShell(), //
-	        		  SWT.ICON_ERROR | SWT.OK);
-	          
-	          dialog.setText("Something went wrong: " + e.getLocalizedMessage() + " " + e.getCause());
-	          dialog.setMessage(e.getLocalizedMessage());
-	          dialog.open();
+		final MessageBox dialog = new MessageBox(//
+				Display.getDefault().getActiveShell(), //
+				SWT.ICON_ERROR | SWT.OK);
+
+		dialog.setText("Something went wrong: " + e.getLocalizedMessage() + " " + e.getCause());
+		dialog.setMessage(e.getLocalizedMessage());
+		dialog.open();
 	}
 }

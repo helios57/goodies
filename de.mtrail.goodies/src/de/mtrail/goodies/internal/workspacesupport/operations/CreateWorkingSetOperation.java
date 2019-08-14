@@ -7,7 +7,8 @@ import de.mtrail.goodies.internal.workspacesupport.util.FeatureUtility;
 import de.mtrail.goodies.internal.workspacesupport.util.WorkspaceUtility;
 
 /**
- * Creates a WorkingSet for a given project instance and adds it to the workingSetManager.
+ * Creates a WorkingSet for a given project instance and adds it to the
+ * workingSetManager.
  */
 public class CreateWorkingSetOperation {
 
@@ -20,7 +21,7 @@ public class CreateWorkingSetOperation {
 	public void createWorkingSetFromFeatureProject(IProject featureProject) {
 		IWorkingSet featureWorkingSet = WorkspaceUtility.createOrGetWorkingSet(featureProject.getName());
 		IProject[] referencedPlugins = FeatureUtility.getReferencedPlugins(featureProject);
-		
+
 		featureWorkingSet.setElements(featureWorkingSet.adaptElements(referencedPlugins));
 	}
 }

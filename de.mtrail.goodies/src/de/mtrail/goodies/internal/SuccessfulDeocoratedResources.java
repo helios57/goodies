@@ -10,25 +10,25 @@ import java.util.List;
 
 public class SuccessfulDeocoratedResources {
 
-  private final List<Object> resources = new ArrayList<Object>();
+	private final List<Object> resources = new ArrayList<Object>();
 
-  public void addResource(final Object resource) {
-    if (!resources.contains(resource)) {
-      resources.add(resource);
-    }
-  }
+	public void addResource(final Object resource) {
+		if (!resources.contains(resource)) {
+			resources.add(resource);
+		}
+	}
 
-  public void removeResource(final Object resource) {
-    if (resources.contains(resource)) {
-      resources.remove(resource);
-    }
-  }
+	public void removeResource(final Object resource) {
+		if (resources.contains(resource)) {
+			resources.remove(resource);
+		}
+	}
 
-  public List<Object> getResources() {
-    return resources;
-  }
+	public List<Object> getResources() {
+		return resources;
+	}
 
-  public void dispose() {
-    resources.clear();
-  }
+	public void dispose() {
+		resources.clear();
+	}
 }

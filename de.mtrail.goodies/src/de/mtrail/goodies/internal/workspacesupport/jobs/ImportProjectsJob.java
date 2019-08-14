@@ -14,26 +14,27 @@ import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
 import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollectorAdapter;
 
 /**
- * This Job uses the custom {@link #ImportProjectsJob(String, Map, SummaryCollector, PreferenceSupport)} to import all projects not in
- * workspace already.
+ * This Job uses the custom
+ * {@link #ImportProjectsJob(String, Map, SummaryCollector, PreferenceSupport)}
+ * to import all projects not in workspace already.
  */
 public class ImportProjectsJob extends AbstractWorkspaceJobWithSummary {
 
-  private final ImportProjectsOperation operation;
+	private final ImportProjectsOperation operation;
 
-  public ImportProjectsJob(final String path, final Map<String, BundleConfig> workspaceConfiguration,
-      final SummaryCollector summaryCollector, final PreferenceSupport preferenceSupport) {
-    super("Import projects into workspace", summaryCollector);
-    operation = new ImportProjectsOperation(//
-        path, workspaceConfiguration, new SummaryCollectorAdapter(summaryCollector), preferenceSupport);
-  }
+	public ImportProjectsJob(final String path, final Map<String, BundleConfig> workspaceConfiguration,
+			final SummaryCollector summaryCollector, final PreferenceSupport preferenceSupport) {
+		super("Import projects into workspace", summaryCollector);
+		operation = new ImportProjectsOperation(//
+				path, workspaceConfiguration, new SummaryCollectorAdapter(summaryCollector), preferenceSupport);
+	}
 
-  @Override
-  protected IStatus run_internal(final SubMonitor subMonitor) {
-    operation.init();
-    if (operation.getBundlesNotInWorkspace().isEmpty() == false) {
-      return operation.run(subMonitor);
-    }
-    return Status.OK_STATUS;
-  }
+	@Override
+	protected IStatus run_internal(final SubMonitor subMonitor) {
+		operation.init();
+		if (operation.getBundlesNotInWorkspace().isEmpty() == false) {
+			return operation.run(subMonitor);
+		}
+		return Status.OK_STATUS;
+	}
 }

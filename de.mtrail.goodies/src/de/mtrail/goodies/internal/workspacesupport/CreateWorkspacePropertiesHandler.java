@@ -55,11 +55,12 @@ public final class CreateWorkspacePropertiesHandler extends AbstractHandler {
 
 		for (IProject bundle : bundles) {
 			String key = bundle.getName();
-			
+
 			properties.put(key + "." + WorkspacePropertiesConstants.STATE, getState(bundle));
 
 			String workingSetName = bundleWorkingSetIdx.get(key);
-			properties.put(key + "." + WorkspacePropertiesConstants.WORKINGSET, workingSetName == null ? "" : workingSetName);
+			properties.put(key + "." + WorkspacePropertiesConstants.WORKINGSET,
+					workingSetName == null ? "" : workingSetName);
 		}
 		return properties;
 	}

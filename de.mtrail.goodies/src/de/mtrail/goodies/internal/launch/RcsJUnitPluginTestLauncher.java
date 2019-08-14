@@ -19,36 +19,36 @@ import org.eclipse.swt.SWT;
 @SuppressWarnings("restriction")
 public class RcsJUnitPluginTestLauncher extends JUnitLaunchConfigurationDelegate {
 
-  public RcsJUnitPluginTestLauncher() {
-    super();
-  }
+	public RcsJUnitPluginTestLauncher() {
+		super();
+	}
 
-  @Override
-  public synchronized void launch(ILaunchConfiguration configuration, String mode, ILaunch launch,
-      IProgressMonitor monitor) throws CoreException {
-    final ILaunchConfigurationWorkingCopy adjusted = configuration.getWorkingCopy();
-    adjustVMArguments(configuration, adjusted);
-    adjustApplicationArguments(configuration, adjusted);
-    super.launch(adjusted, mode, launch, monitor);
-  }
+	@Override
+	public synchronized void launch(ILaunchConfiguration configuration, String mode, ILaunch launch,
+			IProgressMonitor monitor) throws CoreException {
+		final ILaunchConfigurationWorkingCopy adjusted = configuration.getWorkingCopy();
+		adjustVMArguments(configuration, adjusted);
+		adjustApplicationArguments(configuration, adjusted);
+		super.launch(adjusted, mode, launch, monitor);
+	}
 
-private void adjustApplicationArguments(ILaunchConfiguration configuration,
-		ILaunchConfigurationWorkingCopy adjusted) throws CoreException {
-	  
-	  String appArguments = configuration.getAttribute(IPDELauncherConstants.APPLICATION, "");
-	  if (appArguments.isEmpty() || IPDEConstants.CORE_TEST_APPLICATION.equals(appArguments) == false) {
-		  adjusted.setAttribute(IPDELauncherConstants.APPLICATION, IPDEConstants.CORE_TEST_APPLICATION);
-	  }
-}
+	private void adjustApplicationArguments(ILaunchConfiguration configuration,
+			ILaunchConfigurationWorkingCopy adjusted) throws CoreException {
 
-private void adjustVMArguments(ILaunchConfiguration configuration, final ILaunchConfigurationWorkingCopy adjusted)
-      throws CoreException {
+		String appArguments = configuration.getAttribute(IPDELauncherConstants.APPLICATION, "");
+		if (appArguments.isEmpty() || IPDEConstants.CORE_TEST_APPLICATION.equals(appArguments) == false) {
+			adjusted.setAttribute(IPDELauncherConstants.APPLICATION, IPDEConstants.CORE_TEST_APPLICATION);
+		}
+	}
 
-    String vmArguments = configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, ""); //$NON-NLS-1$
+	private void adjustVMArguments(ILaunchConfiguration configuration, final ILaunchConfigurationWorkingCopy adjusted)
+			throws CoreException {
 
-    if (vmArguments.indexOf(IntegrationTestArgument.JUNIT_VM_ARGUMENT.getDefault()) == -1) {
-      vmArguments += SWT.LF + IntegrationTestArgument.JUNIT_VM_ARGUMENT.getDefault();
-      adjusted.setAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, vmArguments);
-    }
-  }
+		String vmArguments = configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, ""); //$NON-NLS-1$
+
+		if (vmArguments.indexOf(IntegrationTestArgument.JUNIT_VM_ARGUMENT.getDefault()) == -1) {
+			vmArguments += SWT.LF + IntegrationTestArgument.JUNIT_VM_ARGUMENT.getDefault();
+			adjusted.setAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, vmArguments);
+		}
+	}
 }

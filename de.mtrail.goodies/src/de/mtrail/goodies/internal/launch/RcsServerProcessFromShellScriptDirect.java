@@ -9,13 +9,14 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.ui.DebugUITools;
 
 /**
- * Shortcut, um RCS-Processe anhand der Parameter eines Shell-Scripts direkt zu starten.
+ * Shortcut, um RCS-Processe anhand der Parameter eines Shell-Scripts direkt zu
+ * starten.
  */
 public class RcsServerProcessFromShellScriptDirect extends RcsServerProcessFromShellScriptBase {
 
-  @Override
-  protected void doLaunch(ILaunchConfiguration config, String mode) {
-    DebugUITools.launch(config, mode);
-  }
+	@Override
+	protected void doLaunch(ILaunchConfiguration config, String mode) {
+		DebugUITools.launch(config, mode);
+	}
 
 }

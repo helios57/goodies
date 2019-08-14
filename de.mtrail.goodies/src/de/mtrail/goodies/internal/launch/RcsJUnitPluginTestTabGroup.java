@@ -27,7 +27,8 @@ import org.eclipse.pde.ui.launcher.TracingTab;
 import org.eclipse.swt.SWT;
 
 /**
- * Erweitert die Standard Plug-In Test Tab um die custom JVM Arguments Tab und ProgramBlockTab ("Main")
+ * Erweitert die Standard Plug-In Test Tab um die custom JVM Arguments Tab und
+ * ProgramBlockTab ("Main")
  *
  */
 @SuppressWarnings("restriction")
@@ -42,8 +43,8 @@ public class RcsJUnitPluginTestTabGroup extends JUnitTabGroup {
 		ILaunchConfigurationTab[] tabs = null;
 		JavaArgumentsTab javaArgumentsTab = new RcsJavaArgumentsTab();
 
-		tabs = new ILaunchConfigurationTab[] { new TestTab(), new RcsPluginJUnitMainTab(), javaArgumentsTab,new PluginsTab(), new ConfigurationTab(true), new TracingTab(),
-				new EnvironmentTab(), new CommonTab() };
+		tabs = new ILaunchConfigurationTab[] { new TestTab(), new RcsPluginJUnitMainTab(), javaArgumentsTab,
+				new PluginsTab(), new ConfigurationTab(true), new TracingTab(), new EnvironmentTab(), new CommonTab() };
 		setTabs(tabs);
 	}
 
@@ -53,7 +54,8 @@ public class RcsJUnitPluginTestTabGroup extends JUnitTabGroup {
 	}
 
 	/**
-	 * Korrigiert die Main-Attribute, wie z.B. "Use Application/Product" und "Headless" usw.
+	 * Korrigiert die Main-Attribute, wie z.B. "Use Application/Product" und
+	 * "Headless" usw.
 	 *
 	 */
 	private static class RcsPluginJUnitMainTab extends PluginJUnitMainTab {
@@ -63,24 +65,23 @@ public class RcsJUnitPluginTestTabGroup extends JUnitTabGroup {
 			public RcsJUnitProgramBlock(AbstractLauncherTab tab) {
 				super(tab);
 			}
-			
+
 			@Override
 			public void setDefaults(ILaunchConfigurationWorkingCopy config) {
-				config.setAttribute(IPDELauncherConstants.USE_PRODUCT, false); 
+				config.setAttribute(IPDELauncherConstants.USE_PRODUCT, false);
 				config.setAttribute(IPDELauncherConstants.APPLICATION, IPDEConstants.CORE_TEST_APPLICATION);
 			}
-			
+
 			@Override
-			public void initializeFrom(ILaunchConfiguration configuration)
-					throws CoreException {
+			public void initializeFrom(ILaunchConfiguration configuration) throws CoreException {
 				ILaunchConfigurationWorkingCopy adjusted;
 				try {
 					adjusted = configuration.getWorkingCopy();
-					if (configuration.getAttribute(IPDELauncherConstants.USE_PRODUCT,false) == true) {
-						adjusted.setAttribute(IPDELauncherConstants.USE_PRODUCT,false);
+					if (configuration.getAttribute(IPDELauncherConstants.USE_PRODUCT, false) == true) {
+						adjusted.setAttribute(IPDELauncherConstants.USE_PRODUCT, false);
 					}
-					
-					String appAttribute = configuration.getAttribute(IPDELauncherConstants.APPLICATION, ""); 
+
+					String appAttribute = configuration.getAttribute(IPDELauncherConstants.APPLICATION, "");
 					if (appAttribute.isEmpty() || appAttribute.equals(IPDEConstants.CORE_TEST_APPLICATION) == false) {
 						adjusted.setAttribute(IPDELauncherConstants.APPLICATION, IPDEConstants.CORE_TEST_APPLICATION);
 					}
@@ -108,7 +109,7 @@ public class RcsJUnitPluginTestTabGroup extends JUnitTabGroup {
 			try {
 				adjusted = configuration.getWorkingCopy();
 				String vmArguments = configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS,
-								""); //$NON-NLS-1$
+						""); //$NON-NLS-1$
 				if (vmArguments.indexOf(IntegrationTestArgument.JUNIT_VM_ARGUMENT.getDefault()) == -1) {
 					vmArguments += SWT.LF + IntegrationTestArgument.JUNIT_VM_ARGUMENT.getDefault();
 					adjusted.setAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, vmArguments);

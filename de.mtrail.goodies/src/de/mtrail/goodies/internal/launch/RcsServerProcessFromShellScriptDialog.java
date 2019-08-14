@@ -10,20 +10,21 @@ import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Shortcut, um RCS-Processe anhand der Parameter eines Shell-Scripts mit einem vorgeschaltetet Dialog zu starten.
+ * Shortcut, um RCS-Processe anhand der Parameter eines Shell-Scripts mit einem
+ * vorgeschaltetet Dialog zu starten.
  */
 public class RcsServerProcessFromShellScriptDialog extends RcsServerProcessFromShellScriptBase {
 
-  private static final String MODE_RUN = "run"; //$NON-NLS-1$
+	private static final String MODE_RUN = "run"; //$NON-NLS-1$
 
-  private static final String GROUP_RUN = "org.eclipse.debug.ui.launchGroup.run"; //$NON-NLS-1$
-  private static final String GROUP_DEBUG = "org.eclipse.debug.ui.launchGroup.debug"; //$NON-NLS-1$
+	private static final String GROUP_RUN = "org.eclipse.debug.ui.launchGroup.run"; //$NON-NLS-1$
+	private static final String GROUP_DEBUG = "org.eclipse.debug.ui.launchGroup.debug"; //$NON-NLS-1$
 
-  @Override
-  protected void doLaunch(ILaunchConfiguration config, String mode) {
-    final String group = MODE_RUN.equals(mode) ? GROUP_RUN : GROUP_DEBUG;
-    DebugUITools.openLaunchConfigurationDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), config,
-        group, null);
-  }
+	@Override
+	protected void doLaunch(ILaunchConfiguration config, String mode) {
+		final String group = MODE_RUN.equals(mode) ? GROUP_RUN : GROUP_DEBUG;
+		DebugUITools.openLaunchConfigurationDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+				config, group, null);
+	}
 
 }

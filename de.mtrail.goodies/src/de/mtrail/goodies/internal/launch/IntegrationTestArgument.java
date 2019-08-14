@@ -12,27 +12,27 @@ import de.mtrail.goodies.GoodiesPlugin;
 
 public enum IntegrationTestArgument {
 
-  JUNIT_VM_ARGUMENT("-Drcs.process.configlocations=${rcs.process.configlocations}"); //$NON-NLS-1$
+	JUNIT_VM_ARGUMENT("-Drcs.process.configlocations=${rcs.process.configlocations}"); //$NON-NLS-1$
 
-  private final String defaultValue;
+	private final String defaultValue;
 
-  private IntegrationTestArgument(String defaultValue) {
-    this.defaultValue = defaultValue;
-  }
+	private IntegrationTestArgument(String defaultValue) {
+		this.defaultValue = defaultValue;
+	}
 
-  public String getId() {
-    return "de.mtrail.goodies.rcsjunitplugintest." + name(); //$NON-NLS-1$
-  }
+	public String getId() {
+		return "de.mtrail.goodies.rcsjunitplugintest." + name(); //$NON-NLS-1$
+	}
 
-  public String getDefault() {
-    return this.defaultValue;
-  }
+	public String getDefault() {
+		return this.defaultValue;
+	}
 
-  public String getPreference() {
-    return GoodiesPlugin.getDefault().getPreferenceStore().getString(name());
-  }
+	public String getPreference() {
+		return GoodiesPlugin.getDefault().getPreferenceStore().getString(name());
+	}
 
-  public String getValue(ILaunchConfiguration config) throws CoreException {
-    return config.getAttribute(getId(), getPreference());
-  }
+	public String getValue(ILaunchConfiguration config) throws CoreException {
+		return config.getAttribute(getId(), getPreference());
+	}
 }

@@ -19,18 +19,19 @@ import org.eclipse.ui.PlatformUI;
  * Utility class to help dealing with Feature Plug-ins.
  */
 public final class FeatureUtility {
-	
+
 	private static final IProject[] EMPTY_PROJECT_ARRAY = new IProject[] {};
-	
+
 	private static final String FEATURE_NATURE_ID = "org.eclipse.pde.FeatureNature";
 
 	/**
-	 * @return <code>true</code>, if the current selection is one or more instances of a Feature Project.
+	 * @return <code>true</code>, if the current selection is one or more instances
+	 *         of a Feature Project.
 	 */
 	public boolean isFeatureProjectSelected() {
 		return isFeature(getSelection());
 	}
-	
+
 	private boolean isFeature(final IStructuredSelection structuredSelection) {
 		if (structuredSelection == null || structuredSelection.isEmpty()) {
 			return false;
@@ -45,24 +46,25 @@ public final class FeatureUtility {
 		// All elements are of type Feature, we're good
 		return true;
 	}
-	
+
 	private IStructuredSelection getSelection() {
-		final ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ISelectionService.class);
+		final ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getService(ISelectionService.class);
 		final ISelection selection = selectionService.getSelection();
 		if (selection != null && selection instanceof IStructuredSelection) {
 			return (IStructuredSelection) selection;
 		}
 		return null;
 	}
-	
-	public static boolean isFeature(final Object o)  {
+
+	public static boolean isFeature(final Object o) {
 		if (o instanceof IProject) {
 			final IProject project = (IProject) o;
 			try {
 				return project.isOpen() && project.isNatureEnabled(FEATURE_NATURE_ID);
 			} catch (final CoreException e) {
 				ErrorHandler.handle(e);
-			}			
+			}
 		}
 		return false;
 	}
@@ -81,14 +83,14 @@ public final class FeatureUtility {
 		final IFeatureModel featureModel = PDECore.getDefault().getFeatureModelManager()
 				.findFeatureModel(featureProject.getName());
 		IFeaturePlugin[] featurePlugins = featureModel.getFeature().getPlugins();
-	
+
 		if (featurePlugins == null || featurePlugins.length == 0) {
 			return EMPTY_PROJECT_ARRAY;
 		}
-	
+
 		// Create an Index to lookup the actual projects
 		Map<String, IProject> projectIndex = WorkspaceUtility.createWorkspaceProjectIndex();
-	
+
 		// create IProject array from the featureplugin instances
 		List<IProject> referencedProjects = new ArrayList<IProject>();
 		for (IFeaturePlugin featurePlugin : featurePlugins) {

@@ -14,19 +14,19 @@ import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
  */
 public class ShowSummaryJob extends AbstractWorkspaceJobWithSummary {
 
-  public ShowSummaryJob(final SummaryCollector summaryCollector) {
-    super("Show summary", summaryCollector, Job.BUILD);
-  }
+	public ShowSummaryJob(final SummaryCollector summaryCollector) {
+		super("Show summary", summaryCollector, Job.BUILD);
+	}
 
-  @Override
-  protected IStatus run_internal(final SubMonitor subMonitor) {
-    Display.getDefault().asyncExec(new Runnable() {
+	@Override
+	protected IStatus run_internal(final SubMonitor subMonitor) {
+		Display.getDefault().asyncExec(new Runnable() {
 
-      @Override
-      public void run() {
-        summaryCollector.showSummaryMessage();
-      }
-    });
-    return Status.OK_STATUS;
-  }
+			@Override
+			public void run() {
+				summaryCollector.showSummaryMessage();
+			}
+		});
+		return Status.OK_STATUS;
+	}
 }

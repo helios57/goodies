@@ -18,10 +18,10 @@ import org.eclipse.pde.ui.launcher.TracingTab;
  */
 public class RcsServerProcessTabGroup extends AbstractLaunchConfigurationTabGroup {
 
-  @Override
-  public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
-    setTabs(new ILaunchConfigurationTab[] { new RcsServerProcessApplicationTab(), new JavaJRETab(), new TracingTab(), 
-        new EnvironmentTab(), new CommonTab() });
-  }
+	@Override
+	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
+		setTabs(new ILaunchConfigurationTab[] { new RcsServerProcessApplicationTab(), new JavaJRETab(),
+				new TracingTab(), new EnvironmentTab(), new CommonTab() });
+	}
 
 }
