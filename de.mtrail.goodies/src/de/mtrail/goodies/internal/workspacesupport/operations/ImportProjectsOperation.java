@@ -1,12 +1,11 @@
 package de.mtrail.goodies.internal.workspacesupport.operations;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import java.io.File;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;

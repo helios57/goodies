@@ -1,5 +1,9 @@
 package de.mtrail.goodies.internal.workspacesupport.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -7,15 +11,7 @@ import java.util.Properties;
 import de.mtrail.goodies.internal.workspacesupport.model.BundleConfig;
 import de.mtrail.goodies.internal.workspacesupport.model.State;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
-public class WorkspaceConfigurationReader {
-
-  private final static String WORKINGSET = "workingset";
-  private final static String STATE = "state";
+public class WorkspacePropertiesReader {
 
   /**
    * Reads the configuration file from the parameter path and maps all entries to the unique bundle name and an instance of
@@ -48,10 +44,10 @@ public class WorkspaceConfigurationReader {
 
     final String valueKey = valueKey(k);
     switch (valueKey) {
-    case WORKINGSET:
+    case WorkspacePropertiesConstants.WORKINGSET:
       bundleConfig.setWorkingSetName(v);
       break;
-    case STATE:
+    case WorkspacePropertiesConstants.STATE:
       bundleConfig.setState(State.valueOf(v));
       break;
     }

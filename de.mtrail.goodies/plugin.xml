@@ -386,7 +386,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.pde.ui.tools">
+            locationURI="popup:org.eclipse.pde.ui.tools?after=additions">
          <command
                commandId="de.mtrail.goodies.command.createws"
                label="Create WorkingSet"
@@ -394,6 +394,18 @@
                 <visibleWhen
                   checkEnabled="true">
                 </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.pde.ui.tools?after=additions">
+         <command
+               commandId="de.mtrail.goodies.command.createwsproperties"
+               label="Create Workspace Properties"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
          </command>
       </menuContribution>      
    </extension>
@@ -416,6 +428,7 @@
             commandId="de.mtrail.goodies.command.createws">
       </handler>
       <handler
+            class="de.mtrail.goodies.internal.workspacesupport.CreateWorkspacePropertiesHandler"
             commandId="de.mtrail.goodies.command.createwsproperties">
       </handler>
    </extension>

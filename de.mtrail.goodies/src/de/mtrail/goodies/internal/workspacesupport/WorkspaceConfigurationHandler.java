@@ -1,23 +1,16 @@
 package de.mtrail.goodies.internal.workspacesupport;
 
+import static de.mtrail.goodies.internal.workspacesupport.util.WorkspacePropertiesReader.readAttributes;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static de.mtrail.goodies.internal.workspacesupport.util.WorkspaceConfigurationReader.*;
-
-import java.io.IOException;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.mtrail.goodies.GoodiesPlugin;
 import de.mtrail.goodies.internal.GoodiesPreferenceConstants;

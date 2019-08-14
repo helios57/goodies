@@ -5,7 +5,7 @@
  */
 package de.mtrail.goodies.internal;
 
-import static de.mtrail.goodies.internal.GoodiesPreferenceConstants.*;
+import static de.mtrail.goodies.internal.GoodiesPreferenceConstants.TEXT_DECORATIONS_FLAG;
 
 import java.util.HashMap;
 import java.util.Map;

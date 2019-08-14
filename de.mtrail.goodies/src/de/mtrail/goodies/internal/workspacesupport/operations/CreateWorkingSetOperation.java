@@ -3,6 +3,7 @@ package de.mtrail.goodies.internal.workspacesupport.operations;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.ui.IWorkingSet;
 
+import de.mtrail.goodies.internal.workspacesupport.util.FeatureUtility;
 import de.mtrail.goodies.internal.workspacesupport.util.WorkspaceUtility;
 
 /**
@@ -18,7 +19,7 @@ public class CreateWorkingSetOperation {
 	 */
 	public void createWorkingSetFromFeatureProject(IProject featureProject) {
 		IWorkingSet featureWorkingSet = WorkspaceUtility.createOrGetWorkingSet(featureProject.getName());
-		IProject[] referencedPlugins = WorkspaceUtility.getReferencedPlugins(featureProject);
+		IProject[] referencedPlugins = FeatureUtility.getReferencedPlugins(featureProject);
 		
 		featureWorkingSet.setElements(featureWorkingSet.adaptElements(referencedPlugins));
 	}
