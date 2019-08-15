@@ -248,6 +248,11 @@
             description="Create Workspace Properties"
             id="de.mtrail.goodies.command.createwsproperties"
             name="Create Workspace Properties">
+      </command>
+      <command
+            defaultHandler="de.mtrail.goodies.internal.workspacesupport.util.ReferenceCommandHandler"
+            id="de.mtrail.goodies.toolbar.pulldown.referenceCommand"
+            name="RCS Workspace Support">
       </command>  
    </extension>
    <extension
@@ -358,6 +363,37 @@
       <initializer
             class="de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver">
       </initializer>
+   </extension>
+    <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar id="de.mtrail.goodies.toolbar.pulldown">
+         <command
+         	commandId="de.mtrail.goodies.toolbar.pulldown.referenceCommand"
+            icon="icons/sample.gif"
+            tooltip="RCS Workspace Support"
+            id="de.mtrail.goodies.toolbar.pulldown.referenceCommand"
+            style="pulldown">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution locationURI="menu:de.mtrail.goodies.toolbar.pulldown.referenceCommand">
+            <command 
+                commandId="de.mtrail.goodies.command.createwsproperties"
+                style="push">
+            </command>
+      </menuContribution>
+      <menuContribution locationURI="menu:de.mtrail.goodies.toolbar.pulldown.referenceCommand">
+            <command 
+                commandId="de.mtrail.goodies.commands.closeProjects"
+                style="push">
+            </command>
+      </menuContribution>            
+      <menuContribution locationURI="menu:de.mtrail.goodies.toolbar.pulldown.referenceCommand">
+            <command 
+                commandId="de.mtrail.goodies.command.createws"
+                style="push">
+            </command>
+      </menuContribution>            
    </extension>
    <extension
          point="org.eclipse.ui.menus">
