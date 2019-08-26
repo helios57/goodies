@@ -16,8 +16,10 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Utility class to help dealing with Feature Plug-ins.
+ * Utility class to help dealing with Feature Plug-ins, such as identification
+ * of such elements or retrieving child bundles.
  */
+@SuppressWarnings("restriction") // we are using some PDE internals here to achieve our goal.
 public final class FeatureUtility {
 
 	private static final IProject[] EMPTY_PROJECT_ARRAY = new IProject[] {};
@@ -72,29 +74,29 @@ public final class FeatureUtility {
 	/**
 	 * Finds the {@link IFeatureModel} to the given parameter Project and creates an
 	 * array of {@link IProject} instances from the plugins of the feature.
-	 * 
+	 *
 	 * @param featureProject A Project of Feature Nature
 	 * @return an empty array if no plugins are found in the workspace, or an array
 	 *         with existing plugins from the workspace matching the
 	 *         {@link IFeaturePlugin} of the parameter Feature project.
 	 */
-	public static IProject[] getReferencedPlugins(IProject featureProject) {
+	public static IProject[] getReferencedPlugins(final IProject featureProject) {
 		// Find Feature Model and its feature plugins
 		final IFeatureModel featureModel = PDECore.getDefault().getFeatureModelManager()
 				.findFeatureModel(featureProject.getName());
-		IFeaturePlugin[] featurePlugins = featureModel.getFeature().getPlugins();
+		final IFeaturePlugin[] featurePlugins = featureModel.getFeature().getPlugins();
 
 		if (featurePlugins == null || featurePlugins.length == 0) {
 			return EMPTY_PROJECT_ARRAY;
 		}
 
 		// Create an Index to lookup the actual projects
-		Map<String, IProject> projectIndex = WorkspaceUtility.createWorkspaceProjectIndex();
+		final Map<String, IProject> projectIndex = WorkspaceUtility.createWorkspaceProjectIndex();
 
 		// create IProject array from the featureplugin instances
-		List<IProject> referencedProjects = new ArrayList<IProject>();
-		for (IFeaturePlugin featurePlugin : featurePlugins) {
-			IProject project = projectIndex.get(featurePlugin.getId());
+		final List<IProject> referencedProjects = new ArrayList<>();
+		for (final IFeaturePlugin featurePlugin : featurePlugins) {
+			final IProject project = projectIndex.get(featurePlugin.getId());
 			if (project != null) {
 				referencedProjects.add(project);
 			}
