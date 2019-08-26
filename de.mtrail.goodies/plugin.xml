@@ -235,19 +235,29 @@
             name="RCS JUnit Plug-in Test">
       </command>
       <command
-            description="Workspace Support"
-            id="de.mtrail.goodies.commands.closeProjects"
-            name="Workspace Support">
+            description="Setup Workspace"
+            id="de.mtrail.goodies.commands.configurews"
+            name="Setup Workspace">
       </command>
       <command
-            description="Create Working Set"
+            description="Create Working Set From Feature"
             id="de.mtrail.goodies.command.createws"
-            name="Create Working Set">
+            name="Create Working Set From Feature">
       </command>
       <command
             description="Create Workspace Properties"
             id="de.mtrail.goodies.command.createwsproperties"
             name="Create Workspace Properties">
+      </command>
+      <command
+            defaultHandler="de.mtrail.goodies.internal.workspacesupport.util.ReferenceCommandHandler"
+            id="de.mtrail.goodies.toolbar.pulldown.referenceCommand"
+            name="RCS Workspace Support">
+      </command>
+      <command
+            description="Import Projects from Properties"
+            id="de.mtrail.goodies.command.importProjects"
+            name="Import Projects from Properties">
       </command>  
    </extension>
    <extension
@@ -359,6 +369,44 @@
             class="de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver">
       </initializer>
    </extension>
+    <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar id="de.mtrail.goodies.toolbar.pulldown">
+         <command
+         	commandId="de.mtrail.goodies.toolbar.pulldown.referenceCommand"
+            icon="icons/sample.gif"
+            tooltip="RCS Workspace Support"
+            id="de.mtrail.goodies.toolbar.pulldown.referenceCommand"
+            style="pulldown">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution locationURI="menu:de.mtrail.goodies.toolbar.pulldown.referenceCommand">
+            <command 
+                commandId="de.mtrail.goodies.command.createwsproperties"
+                style="push">
+            </command>
+      </menuContribution>
+      <menuContribution locationURI="menu:de.mtrail.goodies.toolbar.pulldown.referenceCommand">
+            <command 
+                commandId="de.mtrail.goodies.commands.configurews"
+                style="push">
+            </command>
+      </menuContribution>            
+      <menuContribution locationURI="menu:de.mtrail.goodies.toolbar.pulldown.referenceCommand">
+            <command 
+                commandId="de.mtrail.goodies.command.createws"
+                style="push">
+            </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:de.mtrail.goodies.toolbar.pulldown.referenceCommand">
+         <command
+               commandId="de.mtrail.goodies.command.importProjects"
+               style="push">
+         </command>
+      </menuContribution>            
+   </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -378,7 +426,7 @@
          <toolbar
                id="ch.softbee.updatetarget.toolbars.updateTargetToolbar">
             <command
-                  commandId="de.mtrail.goodies.commands.closeProjects"
+                  commandId="de.mtrail.goodies.commands.configurews"
                   icon="icons/obj16/close_project.png"
                   style="push">
             </command>
@@ -420,16 +468,20 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="de.mtrail.goodies.internal.workspacesupport.WorkspaceConfigurationHandler"
-            commandId="de.mtrail.goodies.commands.closeProjects">
+            class="de.mtrail.goodies.internal.workspacesupport.handler.WorkspaceConfigurationHandler"
+            commandId="de.mtrail.goodies.commands.configurews">
       </handler>
       <handler
-            class="de.mtrail.goodies.internal.workspacesupport.CreateWorkingSetHandler"
+            class="de.mtrail.goodies.internal.workspacesupport.handler.CreateWorkingSetHandler"
             commandId="de.mtrail.goodies.command.createws">
       </handler>
       <handler
-            class="de.mtrail.goodies.internal.workspacesupport.CreateWorkspacePropertiesHandler"
+            class="de.mtrail.goodies.internal.workspacesupport.handler.CreateWorkspacePropertiesHandler"
             commandId="de.mtrail.goodies.command.createwsproperties">
+      </handler>
+            <handler
+            class="de.mtrail.goodies.internal.workspacesupport.handler.ImportProjectsHandler"
+            commandId="de.mtrail.goodies.command.importProjects">
       </handler>
    </extension>
 </plugin>
