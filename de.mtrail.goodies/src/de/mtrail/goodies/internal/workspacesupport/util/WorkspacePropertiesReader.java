@@ -21,7 +21,7 @@ public class WorkspacePropertiesReader {
 	 * @return Map with bundlename and BundleConfig
 	 * @throws IOException {@link Properties#load(java.io.InputStream)}
 	 */
-	public static Map<String, BundleConfig> readAttributes(final String pathToWorkspaceConfig) throws IOException {
+	public static Map<String, BundleConfig> createConfiguration(final String pathToWorkspaceConfig) throws IOException {
 		final Properties workspaceProperties = readProperties(pathToWorkspaceConfig);
 		final Map<String, BundleConfig> bundleConfiguration = new HashMap<>();
 		workspaceProperties.forEach((k, v) -> addToMap(bundleConfiguration, (String) k, (String) v));

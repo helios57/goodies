@@ -50,7 +50,7 @@ public class WorkspaceProperties {
 	final private static class KeyComparator {
 
 		static int compare(final String key1, final String key2) {
-			return correctKey(key1).compareTo(correctKey(key2));
+			return correctKey(key1.toLowerCase()).compareTo(correctKey(key2.toLowerCase()));
 		}
 
 		private static String correctKey(final String key1) {

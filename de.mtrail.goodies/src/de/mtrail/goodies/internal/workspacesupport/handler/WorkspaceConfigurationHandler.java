@@ -1,13 +1,12 @@
-package de.mtrail.goodies.internal.workspacesupport;
+package de.mtrail.goodies.internal.workspacesupport.handler;
 
-import static de.mtrail.goodies.internal.workspacesupport.util.WorkspacePropertiesReader.readAttributes;
+import static de.mtrail.goodies.internal.workspacesupport.util.WorkspacePropertiesReader.createConfiguration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.jobs.Job;
@@ -18,6 +17,7 @@ import de.mtrail.goodies.internal.workspacesupport.jobs.ImportProjectsJob;
 import de.mtrail.goodies.internal.workspacesupport.jobs.OpenCloseProjectsJob;
 import de.mtrail.goodies.internal.workspacesupport.jobs.ShowSummaryJob;
 import de.mtrail.goodies.internal.workspacesupport.jobs.SortProjectsIntoWorkingSetsJob;
+import de.mtrail.goodies.internal.workspacesupport.launch.AbstractGoodiesHandler;
 import de.mtrail.goodies.internal.workspacesupport.model.BundleConfig;
 import de.mtrail.goodies.internal.workspacesupport.util.ErrorHandler;
 import de.mtrail.goodies.internal.workspacesupport.util.PreferenceSupport;
@@ -27,14 +27,14 @@ import de.mtrail.goodies.internal.workspacesupport.util.SummaryCollector;
  * This handler launches a bunch of jobs to (pre-)configure a RCS based
  * workspace.
  */
-public class WorkspaceConfigurationHandler extends AbstractHandler {
+public class WorkspaceConfigurationHandler extends AbstractGoodiesHandler {
 
 	private final SummaryCollector summaryCollector = new SummaryCollector();
 	private final PreferenceSupport preferenceSupport = new PreferenceSupport(
 			GoodiesPlugin.getDefault().getPreferenceStore());
 
 	@Override
-	public Object execute(final ExecutionEvent event) throws ExecutionException {
+	public Object launch(final ExecutionEvent event) throws ExecutionException {
 
 		preferenceSupport.checkPreferences(); // PreferenceSupport exits with Exception if not properly configured
 
@@ -52,7 +52,7 @@ public class WorkspaceConfigurationHandler extends AbstractHandler {
 	}
 
 	private boolean launchJobs(final String pathString) throws IOException {
-		List<Job> jobs = createJobList(pathString, readAttributes(pathString.trim()));
+		final List<Job> jobs = createJobList(pathString, createConfiguration(pathString.trim()));
 		if (!jobs.isEmpty()) {
 			jobs.forEach(j -> j.schedule());
 		}
@@ -75,7 +75,7 @@ public class WorkspaceConfigurationHandler extends AbstractHandler {
 	 * definitely only when those other jobs are finished.
 	 */
 	private List<Job> createJobList(final String pathString, final Map<String, BundleConfig> workspaceConfiguration) {
-		List<Job> workspaceConfigJobs = new ArrayList<>();
+		final List<Job> workspaceConfigJobs = new ArrayList<>();
 
 		if (preferenceSupport.getBoolean(GoodiesPreferenceConstants.IMPORT_PROJECTS)) {
 			workspaceConfigJobs.add(
