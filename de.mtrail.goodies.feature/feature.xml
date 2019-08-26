@@ -2,7 +2,7 @@
 <feature
       id="de.mtrail.goodies.feature"
       label="Goodies"
-      version="4.0.0.qualifier"
+      version="4.0.1.qualifier"
       provider-name="Gilles Iachelini, mtrail GmbH">
 
    <description>
