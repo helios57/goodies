@@ -14,7 +14,6 @@ import org.eclipse.jface.layout.RowLayoutFactory;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MenuAdapter;
 import org.eclipse.swt.events.MenuEvent;
@@ -37,7 +36,8 @@ import de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver;
 import de.mtrail.goodies.internal.launch.RcsServerProcessLaunchingPreferencePage;
 
 /**
- * Zeigt den aktuellen Workspace
+ * Status bar control to switch between target environments for debugging rcs
+ * server processes.
  */
 public class EnvironmentDisplayControl extends WorkbenchWindowControlContribution {
 
@@ -51,18 +51,18 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 	private static final String propertiesFileName = "goodies.properties";
 
 	public EnvironmentDisplayControl() {
-		Properties goodieProperties = getProperties();
-		String environmentList = goodieProperties.getProperty("environments");
+		final Properties goodieProperties = getProperties();
+		final String environmentList = goodieProperties.getProperty("environments");
 
 		this.envs = environmentList.split(",");
 	}
 
 	private static Properties getProperties() {
-		Properties goodieProperties = new Properties();
-		Bundle thisBundle = GoodiesPlugin.getDefault().getBundle();
+		final Properties goodieProperties = new Properties();
+		final Bundle thisBundle = GoodiesPlugin.getDefault().getBundle();
 		try (InputStream fileStream = FileLocator.openStream(thisBundle, new Path(propertiesFileName), false)) {
 			goodieProperties.load(fileStream);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			throw new RuntimeException("Could not read " + propertiesFileName, e);
 		}
 		return goodieProperties;
@@ -79,7 +79,7 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 		parent.getParent().setRedraw(true);
 
 		// Give some room around the control
-		Composite labelContainer = new Composite(parent, SWT.NONE);
+		final Composite labelContainer = new Composite(parent, SWT.NONE);
 		RowLayoutFactory.fillDefaults().margins(2, 2).type(SWT.HORIZONTAL).applyTo(labelContainer);
 
 		imageLabel = new Label(labelContainer, SWT.NONE);
@@ -102,20 +102,16 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 		});
 		updateLabelText();
 
-		listener = new IPropertyChangeListener() {
+		listener = event -> {
+			if (event.getProperty().equals(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT)) {
+				final IContributionManager contributionManager = getParent();
 
-			@Override
-			public void propertyChange(final PropertyChangeEvent event) {
-				if (event.getProperty().equals(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT)) {
-					IContributionManager contributionManager = getParent();
-
-					// Mit ContibutionManager können wir einfach update rufen
-					if (contributionManager != null) {
-						contributionManager.update(true);
-					} else {
-						// in Eclispe4 muss der aber explizit gesetzt werden. Egal, update manuell...
-						updateLabelText();
-					}
+				// Mit ContibutionManager können wir einfach update rufen
+				if (contributionManager != null) {
+					contributionManager.update(true);
+				} else {
+					// in Eclispe4 muss der aber explizit gesetzt werden. Egal, update manuell...
+					updateLabelText();
 				}
 			}
 		};
@@ -128,7 +124,7 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 	private void createPopupMenu(final Label aLabel) {
 		popupMenu = new Menu(aLabel);
 
-		for (String env : envs) {
+		for (final String env : envs) {
 			final MenuItem envItem = new MenuItem(popupMenu, SWT.NONE);
 			envItem.setText(env);
 			envItem.setImage(GoodiesPlugin.getDefault().getImage(getFlagImageName(env)));
@@ -157,11 +153,11 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 
 	private void updateLabelText() {
 		try {
-			String text = substitute(LABEL_TEXT);
+			final String text = substitute(LABEL_TEXT);
 			label.setText(text);
-			String env = text.split(" ")[0]; //$NON-NLS-1$
+			final String env = text.split(" ")[0]; //$NON-NLS-1$
 			imageLabel.setImage(GoodiesPlugin.getDefault().getImage(getFlagImageName(env)));
-		} catch (CoreException e) {
+		} catch (final CoreException e) {
 			GoodiesPlugin.getDefault().getLog().log(e.getStatus());
 			label.setText(ERROR_TEXT);
 			imageLabel.setImage(GoodiesPlugin.getDefault().getImage("/icons/view16/failed.gif")); //$NON-NLS-1$
@@ -185,15 +181,11 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 
 		@Override
 		public void widgetSelected(final SelectionEvent event) {
-			Display.getDefault().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					IPreferenceStore preferenceStore = GoodiesPlugin.getDefault().getPreferenceStore();
-					preferenceStore.setValue(ConfigLocationsVariableResolver.RCS_PROCESS_CLUSTER,
-							CLUSTER_PREFIX + env.toLowerCase());
-					preferenceStore.setValue(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT, env);
-				}
+			Display.getDefault().asyncExec(() -> {
+				final IPreferenceStore preferenceStore = GoodiesPlugin.getDefault().getPreferenceStore();
+				preferenceStore.setValue(ConfigLocationsVariableResolver.RCS_PROCESS_CLUSTER,
+						CLUSTER_PREFIX + env.toLowerCase());
+				preferenceStore.setValue(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT, env);
 			});
 		}
 	}
@@ -210,7 +202,7 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 
 		@Override
 		public void menuShown(final MenuEvent e) {
-			String currentEnv = GoodiesPlugin.getDefault().getPreferenceStore()
+			final String currentEnv = GoodiesPlugin.getDefault().getPreferenceStore()
 					.getString(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT);
 			envItem.setEnabled(!env.equals(currentEnv));
 		}

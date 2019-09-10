@@ -26,8 +26,7 @@ import org.eclipse.pde.internal.core.iproduct.IProductFeature;
 import org.eclipse.pde.internal.core.product.WorkspaceProductModel;
 
 /**
- * PDE-Black-Magic um alle Plugins eines Features zu ermitteln. Leider werden
- * dazu interne PDE APIs verwendet.
+ * PDE-Black-Magic to retrieve plugins from a feature.
  */
 @SuppressWarnings("restriction")
 class PluginResolver {
@@ -41,10 +40,10 @@ class PluginResolver {
 		this.unknownProducts = new HashSet<>();
 		this.unknownFeatures = new HashSet<>();
 		this.pluginIds = new HashSet<>();
-		for (String productId : productIds) {
+		for (final String productId : productIds) {
 			getAllProductPlugins(productId, this.pluginIds);
 		}
-		for (String featureId : featureIds) {
+		for (final String featureId : featureIds) {
 			this.getAllFeaturePlugins(featureId, this.pluginIds);
 		}
 	}
@@ -53,7 +52,7 @@ class PluginResolver {
 	 * Liefert alle Plugins, die im Workspace vorliegen.
 	 */
 	public Set<String> getWorkspacePlugins() {
-		final Set<String> result = new HashSet<String>();
+		final Set<String> result = new HashSet<>();
 		for (final String pluginId : pluginIds) {
 			final ModelEntry entry = PluginRegistry.findEntry(pluginId);
 			if (entry != null && entry.getWorkspaceModels().length > 0) {
@@ -67,7 +66,7 @@ class PluginResolver {
 	 * Liefert alle Plugins, die im Target sind aber nicht im Workspace.
 	 */
 	public Set<String> getTargetPlugins() {
-		final Set<String> result = new HashSet<String>();
+		final Set<String> result = new HashSet<>();
 		for (final String pluginId : pluginIds) {
 			final ModelEntry entry = PluginRegistry.findEntry(pluginId);
 			if (entry != null && entry.getExternalModels().length > 0 && entry.getWorkspaceModels().length == 0) {
@@ -95,7 +94,7 @@ class PluginResolver {
 	 * Liefert alle Plugins, die weder im Workspace noch im Target sind.
 	 */
 	public Set<String> getUnknownPlugins() {
-		final Set<String> result = new HashSet<String>();
+		final Set<String> result = new HashSet<>();
 		for (final String pluginId : pluginIds) {
 			final ModelEntry entry = PluginRegistry.findEntry(pluginId);
 			if (entry == null || (entry.getExternalModels().length == 0 && entry.getWorkspaceModels().length == 0)) {
@@ -117,12 +116,12 @@ class PluginResolver {
 	}
 
 	private void getAllFeaturePlugins(final IFeature feature, final Set<String> result) {
-		for (IFeaturePlugin plugin : feature.getFeature().getPlugins()) {
+		for (final IFeaturePlugin plugin : feature.getFeature().getPlugins()) {
 			if (checkEnvironment(plugin)) {
 				result.add(plugin.getId());
 			}
 		}
-		for (IFeatureChild child : feature.getIncludedFeatures()) {
+		for (final IFeatureChild child : feature.getIncludedFeatures()) {
 			getAllFeaturePlugins(child.getFeature(), result);
 		}
 	}
@@ -149,7 +148,7 @@ class PluginResolver {
 	}
 
 	private void getAllProductPlugins(final IProduct product, final Set<String> result) {
-		for (IProductFeature feature : product.getFeatures()) {
+		for (final IProductFeature feature : product.getFeatures()) {
 			getAllFeaturePlugins(feature.getId(), result);
 		}
 	}
@@ -158,15 +157,15 @@ class PluginResolver {
 	 * Produkte werden per Namenskonvention im Workspace gesucht.
 	 */
 	private IProduct findProduct(final String id) throws CoreException {
-		IProject productProject = ResourcesPlugin.getWorkspace().getRoot().getProject(id);
+		final IProject productProject = ResourcesPlugin.getWorkspace().getRoot().getProject(id);
 		if (!productProject.exists()) {
 			return null;
 		}
-		IFile productFile = productProject.getFile(id + ".product");
+		final IFile productFile = productProject.getFile(id + ".product");
 		if (!productFile.exists()) {
 			return null;
 		}
-		WorkspaceProductModel product = new WorkspaceProductModel(productFile, false);
+		final WorkspaceProductModel product = new WorkspaceProductModel(productFile, false);
 		product.load();
 		return product.getProduct();
 	}

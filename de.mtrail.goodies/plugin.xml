@@ -6,6 +6,13 @@
     <category
             id="de.mtrail.goodies"
             name="Goodies"/>
+         	<view
+            	name="Bundle Dependency View"
+            	icon="icons/obj16/req_plugins_obj.png"
+            	category="de.mtrail.goodies"
+            	class="de.mtrail.goodies.internal.plugintoolkit.DependenciesView"
+            	id="de.mtrail.goodies.DependenciesView">
+      		</view>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/de.mtrail.goodies.feature_4.0.1.201908260932.jar" id="de.mtrail.goodies.feature" version="4.0.1.201908260932">
+   <feature url="features/de.mtrail.goodies.feature_4.0.2.201909100720.jar" id="de.mtrail.goodies.feature" version="4.0.2.201909100720">
       <category name="goodies.id"/>
    </feature>
    <category-def name="goodies.id" label="mtrail Eclipse Add-Ons">
