@@ -8,7 +8,7 @@ package de.mtrail.goodies.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuccessfulDeocoratedResources {
+public class SuccessfulDecoratedResources {
 
 	private final List<Object> resources = new ArrayList<Object>();
 
