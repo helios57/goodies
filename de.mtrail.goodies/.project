@@ -25,21 +25,4 @@
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>.settings</name>
-			<type>2</type>
-			<locationURI>copy_PARENT1/ch.sbb.rcs.tools.eclipse.setup/settings/eclipse-main</locationURI>
-		</link>
-	</linkedResources>
-	<variableList>
-		<variable>
-			<name>copy_PARENT</name>
-			<value>$%7BPARENT-2-PROJECT_LOC%7D/repos/merge472master</value>
-		</variable>
-		<variable>
-			<name>copy_PARENT1</name>
-			<value>$%7BPARENT-1-copy_PARENT%7D/repos/merge472master</value>
-		</variable>
-	</variableList>
 </projectDescription>

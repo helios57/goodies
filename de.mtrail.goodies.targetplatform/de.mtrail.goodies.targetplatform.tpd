@@ -1,0 +1,12 @@
+target "Mtrail Goodies" with source requirements
+
+location "http://download.eclipse.org/releases/2019-06//" eclipse-2019-06 {
+ org.eclipse.platform.feature.group
+ org.eclipse.rcp.feature.group
+ org.eclipse.jdt.feature.group
+ org.eclipse.equinox.p2.discovery.feature.feature.group
+ org.eclipse.equinox.executable.feature.group
+ org.eclipse.pde.feature.group
+ org.eclipse.eclemma.feature.feature.group
+ 
+}

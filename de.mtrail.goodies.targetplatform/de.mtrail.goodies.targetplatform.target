@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="Mtrail Goodies" sequenceNumber="1568289381">
+  <locations>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.platform.feature.group" version="4.12.0.v20190605-1801"/>
+      <unit id="org.eclipse.rcp.feature.group" version="4.12.0.v20190605-1801"/>
+      <unit id="org.eclipse.jdt.feature.group" version="3.18.0.v20190605-1800"/>
+      <unit id="org.eclipse.equinox.p2.discovery.feature.feature.group" version="1.2.200.v20190129-1112"/>
+      <unit id="org.eclipse.equinox.executable.feature.group" version="3.8.400.v20190515-0925"/>
+      <unit id="org.eclipse.pde.feature.group" version="3.14.0.v20190605-1800"/>
+      <unit id="org.eclipse.eclemma.feature.feature.group" version="3.1.2.201903112331"/>
+      <repository id="eclipse-2019-06" location="http://download.eclipse.org/releases/2019-06/"/>
+    </location>
+  </locations>
+</target>
