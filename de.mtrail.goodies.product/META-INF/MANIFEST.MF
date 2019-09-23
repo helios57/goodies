@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Product
-Bundle-SymbolicName: de.mtrail.goodies.product
+Bundle-SymbolicName: de.mtrail.goodies.product;singleton:=true
 Bundle-Version: 4.0.2.qualifier
 Automatic-Module-Name: de.mtrail.goodies.product
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
