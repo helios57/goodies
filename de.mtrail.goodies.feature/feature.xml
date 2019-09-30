@@ -28,11 +28,11 @@ moved to mtrail namespace
       <import plugin="org.eclipse.jdt.junit.core"/>
       <import plugin="org.eclipse.jdt.junit"/>
       <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.eclemma.core"/>
+      <import plugin="org.eclipse.eclemma.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.eclemma.core"/>
-      <import plugin="org.eclipse.eclemma.ui"/>
       <import plugin="org.jacoco.core"/>
       <import plugin="org.jacoco.report"/>
       <import plugin="org.jacoco.agent"/>
@@ -41,6 +41,62 @@ moved to mtrail namespace
 
    <plugin
          id="de.mtrail.goodies"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.jacoco.agent"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.jacoco.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.jacoco.report"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.eclemma.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.eclemma.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.objectweb.asm"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+      <plugin
+         id="org.objectweb.asm.commons"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.objectweb.asm.tree"
          download-size="0"
          install-size="0"
          version="0.0.0"
