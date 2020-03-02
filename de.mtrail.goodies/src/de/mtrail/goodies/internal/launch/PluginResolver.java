@@ -49,7 +49,7 @@ class PluginResolver {
 	}
 
 	/**
-	 * Liefert alle Plugins, die im Workspace vorliegen.
+	 * Returns the ids of all plugins present in the workspace.
 	 */
 	public Set<String> getWorkspacePlugins() {
 		final Set<String> result = new HashSet<>();
@@ -63,7 +63,7 @@ class PluginResolver {
 	}
 
 	/**
-	 * Liefert alle Plugins, die im Target sind aber nicht im Workspace.
+	 * Returns the ids of all plugins present in the Target Platform, but not in the workspace.
 	 */
 	public Set<String> getTargetPlugins() {
 		final Set<String> result = new HashSet<>();
@@ -77,21 +77,21 @@ class PluginResolver {
 	}
 
 	/**
-	 * Liefert alle Products, die nicht im Workspace sind.
+	 * Returns all products that are not in the workspace.
 	 */
 	public Set<String> getUnknownProducts() {
 		return unknownProducts;
 	}
 
 	/**
-	 * Liefert alle Features, die weder im Workspace noch im Target sind.
+	 * Returns all features that are neither in the workspace, nor in the Target Platform.
 	 */
 	public Set<String> getUnknownFeatures() {
 		return unknownFeatures;
 	}
 
 	/**
-	 * Liefert alle Plugins, die weder im Workspace noch im Target sind.
+	 * Returns all plugin ids that are neither in the workspace, nor in the Target Platform.
 	 */
 	public Set<String> getUnknownPlugins() {
 		final Set<String> result = new HashSet<>();
@@ -104,7 +104,7 @@ class PluginResolver {
 		return result;
 	}
 
-	// === Plugins aus Features ermitteln ===
+	// === Extract plugins from features ===
 
 	private void getAllFeaturePlugins(final String featureId, final Set<String> result) {
 		final IFeatureModel feature = PDECore.getDefault().getFeatureModelManager().findFeatureModel(featureId);
@@ -136,7 +136,7 @@ class PluginResolver {
 		return value == null || value.equals(reference);
 	}
 
-	// === Plugins aus Products ermitteln ===
+	// === Extract plugins from products ===
 
 	private void getAllProductPlugins(final String productId, final Set<String> result) throws CoreException {
 		final IProduct product = findProduct(productId);
@@ -154,7 +154,7 @@ class PluginResolver {
 	}
 
 	/**
-	 * Produkte werden per Namenskonvention im Workspace gesucht.
+	 * Search the workspace for products using the naming convention.
 	 */
 	private IProduct findProduct(final String id) throws CoreException {
 		final IProject productProject = ResourcesPlugin.getWorkspace().getRoot().getProject(id);
