@@ -10,8 +10,8 @@ import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Shortcut, um RCS-Processe anhand der Parameter eines Shell-Scripts mit einem
- * vorgeschaltetet Dialog zu starten.
+ * Shortcut to launch an RCS server process based on parameters from a shell script
+ * with a pre-filled dialog.
  */
 public class RcsServerProcessFromShellScriptDialog extends RcsServerProcessFromShellScriptBase {
 

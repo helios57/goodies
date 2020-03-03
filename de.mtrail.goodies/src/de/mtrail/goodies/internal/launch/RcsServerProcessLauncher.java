@@ -27,7 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import de.mtrail.goodies.GoodiesPlugin;
 
 /**
- * Launcher für RCS-Serverprozesse.
+ * Launcher for RCS server processes
  */
 public class RcsServerProcessLauncher extends LaunchConfigurationDelegate {
 
@@ -56,17 +56,17 @@ public class RcsServerProcessLauncher extends LaunchConfigurationDelegate {
 		PluginResolver resolver = resolvePlugins(config);
 		final Set<String> unknownProducts = resolver.getUnknownProducts();
 		if (!unknownProducts.isEmpty() && !confirmMissing("Missing Products",
-				"The products %s are missing. Launch anyways?", unknownProducts)) {
+				"The products %s are missing. Launch anyway?", unknownProducts)) {
 			return false;
 		}
 		final Set<String> unknownFeatures = resolver.getUnknownFeatures();
 		if (!unknownFeatures.isEmpty() && !confirmMissing("Missing Features",
-				"The features %s are missing. Launch anyways?", unknownFeatures)) {
+				"The features %s are missing. Launch anyway?", unknownFeatures)) {
 			return false;
 		}
 		final Set<String> unknownPlugins = resolver.getUnknownPlugins();
 		if (!unknownPlugins.isEmpty() && !confirmMissing("Missing Plug-ins",
-				"The plug-ins %s are missing. Launch anyways?", unknownPlugins)) {
+				"The plug-ins %s are missing. Launch anyway?", unknownPlugins)) {
 			return false;
 		}
 		return super.preLaunchCheck(config, mode, monitor);

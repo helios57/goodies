@@ -9,8 +9,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.ui.DebugUITools;
 
 /**
- * Shortcut, um RCS-Processe anhand der Parameter eines Shell-Scripts direkt zu
- * starten.
+ * Shortcut to launch an RCS server process directly based on parameters from a shell script.
  */
 public class RcsServerProcessFromShellScriptDirect extends RcsServerProcessFromShellScriptBase {
 

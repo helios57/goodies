@@ -31,8 +31,8 @@ import org.eclipse.ui.IEditorPart;
 import de.mtrail.goodies.GoodiesPlugin;
 
 /**
- * Abstracte Basisimplementierung, um RCS-Processe anhand der Parameter eines
- * Shell-Scripts zu starten.
+ * Abstract implementation to launch an RCS server process based on the parameters
+ * of a shell script.
  */
 abstract class RcsServerProcessFromShellScriptBase implements ILaunchShortcut2 {
 
@@ -44,13 +44,13 @@ abstract class RcsServerProcessFromShellScriptBase implements ILaunchShortcut2 {
 			final Map<RcsServerArgument, String> arguments = readArguments(adaptToFile(selection));
 			ILaunchConfiguration config = null;
 
-			// 1. Nach bestehenden Konfigurationen suchen:
+			// 1. Look for an existing configuration
 			ILaunchConfiguration[] existing = getLaunchConfigurations(selection);
 			if (existing.length > 0) {
 				config = existing[0];
 			}
 
-			// 2. Neue Konfiguration anlegen:
+			// 2. Create a new configuration
 			if (config == null) {
 				config = createLaunchConfiguration(arguments);
 			}
@@ -112,7 +112,7 @@ abstract class RcsServerProcessFromShellScriptBase implements ILaunchShortcut2 {
 	}
 
 	/**
-	 * Neue Launchkonfiguration erstellen.
+	 * Create a new launch configuration
 	 */
 	private ILaunchConfiguration createLaunchConfiguration(final Map<RcsServerArgument, String> arguments)
 			throws CoreException {
@@ -132,8 +132,7 @@ abstract class RcsServerProcessFromShellScriptBase implements ILaunchShortcut2 {
 
 	private Map<RcsServerArgument, String> readArguments(final IFile file) throws CoreException, IOException {
 		final Map<RcsServerArgument, String> arguments = new HashMap<RcsServerArgument, String>();
-		// Wir laden das Shell-Script einfach als Property-Datei, das passt syntaktisch
-		// soweit:
+		// We load the shell script as property data, as it fits syntactically so far:
 		final Properties properties = new Properties();
 
 		try (final InputStream contents = file.getContents()) {
