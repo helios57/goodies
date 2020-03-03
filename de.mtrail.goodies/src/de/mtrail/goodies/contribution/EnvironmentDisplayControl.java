@@ -106,11 +106,11 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 			if (event.getProperty().equals(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT)) {
 				final IContributionManager contributionManager = getParent();
 
-				// Mit ContibutionManager können wir einfach update rufen
+				// With the ContibutionManager we simply call update...
 				if (contributionManager != null) {
 					contributionManager.update(true);
 				} else {
-					// in Eclispe4 muss der aber explizit gesetzt werden. Egal, update manuell...
+					// ...in E4 we explicitly need to set the text.
 					updateLabelText();
 				}
 			}
