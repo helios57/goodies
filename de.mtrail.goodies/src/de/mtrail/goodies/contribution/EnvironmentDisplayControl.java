@@ -41,7 +41,7 @@ import de.mtrail.goodies.internal.launch.RcsServerProcessLaunchingPreferencePage
  */
 public class EnvironmentDisplayControl extends WorkbenchWindowControlContribution {
 
-	private static final String LABEL_TEXT = "${rcs.process.environment} auf ${rcs.process.cluster}"; //$NON-NLS-1$
+	private static final String LABEL_TEXT = "${rcs.process.environment} on ${rcs.process.cluster}"; //$NON-NLS-1$
 	private static final String ERROR_TEXT = "!%&# Fehler"; //$NON-NLS-1$
 	private Label label;
 	private IPropertyChangeListener listener;

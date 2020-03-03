@@ -40,7 +40,7 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import de.mtrail.goodies.GoodiesPlugin;
 
 /**
- * Tab zum Bearbeiten der Launcher-Argumente.
+ * Tab to edit the launcher arguments for an RCS server process.
  */
 class RcsServerProcessApplicationTab extends AbstractLaunchConfigurationTab {
 

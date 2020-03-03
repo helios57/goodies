@@ -14,7 +14,7 @@ import org.eclipse.jdt.debug.ui.launchConfigurations.JavaJRETab;
 import org.eclipse.pde.ui.launcher.TracingTab;
 
 /**
- * Launchdialogtabs für RCS-Serverprocesse.
+ * Launch dialog tabs for RCS server processes.
  */
 public class RcsServerProcessTabGroup extends AbstractLaunchConfigurationTabGroup {
 

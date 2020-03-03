@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Vordefinierte Argument-Werte, die in den Scripten verwendet werden könnten.
+ * Predefined argument values that can be used in the script
  */
 class RcsServerArgumentPresets {
 

@@ -11,7 +11,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import de.mtrail.goodies.GoodiesPlugin;
 
 /**
- * Argumente der RCS-Serverprozesse analog den Launcherscripten.
+ * RCS server process arguments like in the launch scripts.
  */
 public enum RcsServerArgument {
 

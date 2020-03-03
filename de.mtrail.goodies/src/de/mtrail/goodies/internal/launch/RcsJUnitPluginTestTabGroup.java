@@ -27,9 +27,8 @@ import org.eclipse.pde.ui.launcher.TracingTab;
 import org.eclipse.swt.SWT;
 
 /**
- * Erweitert die Standard Plug-In Test Tab um die custom JVM Arguments Tab und
- * ProgramBlockTab ("Main")
- *
+ * Extends the standard Plug-In Test Tab group to override the JVM Arguments Tab
+ * and the Program Block Tab (Main attributes)
  */
 @SuppressWarnings("restriction")
 public class RcsJUnitPluginTestTabGroup extends JUnitTabGroup {
@@ -54,9 +53,7 @@ public class RcsJUnitPluginTestTabGroup extends JUnitTabGroup {
 	}
 
 	/**
-	 * Korrigiert die Main-Attribute, wie z.B. "Use Application/Product" und
-	 * "Headless" usw.
-	 *
+	 * Adapts the Main-Attributes, e.g. "Use Application/Product", "Headless", and so on.
 	 */
 	private static class RcsPluginJUnitMainTab extends PluginJUnitMainTab {
 
@@ -99,7 +96,7 @@ public class RcsJUnitPluginTestTabGroup extends JUnitTabGroup {
 	}
 
 	/**
-	 * Verdrahtet die RCS JVM Arguments
+	 * Adds the RCS JVM Arguments
 	 */
 	private static class RcsJavaArgumentsTab extends JavaArgumentsTab {
 

@@ -25,14 +25,12 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import de.mtrail.goodies.GoodiesPlugin;
 
 /**
- * Preferences zum Launchen von RCS-Server Prozessen.
+ * Preference page for launching RCS server processes.
  * <p>
- * "Field" Komponenten werden mit den Preference-Keys (bzw. Names)
- * initialisiert.
+ * "Field" components are initialized with the Preference-keys as names.
  * <p>
- * Wir speichern die Pfadangaben pauschal unter dem Namen
- * {@link RcsServerArgument#RCS_CONFIG_DIR} ab. Dort befinden sich dann entweder
- * die RCS- oder die RTEX-Default-Pfade.
+ * We save the paths globally under the name {@link RcsServerArgument#RCS_CONFIG_DIR}.
+ * This means that this preference either contains the RCS paths or the RTEX paths.
  */
 public class RcsServerProcessLaunchingPreferencePage extends FieldEditorPreferencePage
 		implements IWorkbenchPreferencePage {
@@ -73,10 +71,10 @@ public class RcsServerProcessLaunchingPreferencePage extends FieldEditorPreferen
 		Composite configParent = new Composite(getFieldEditorParent(), SWT.NONE);
 		GridDataFactory.fillDefaults().span(2, 1).applyTo(configParent);
 
-		// Defaults im Store hinterlegen
+		// Put the default value in the preference store.
 		getPreferenceStore().setDefault(PREF_ISRCSCONFIG, true);
 
-		// Möglicherweise bereits gesetzte Value auslesen
+		// Read the value in case it was already changed.
 		isRcsConfig = getPreferenceStore().getBoolean(PREF_ISRCSCONFIG);
 
 		editor = new EditEnabledListEditor(RcsServerArgument.RCS_CONFIG_DIR.name(), "Configuration path:", configParent,
