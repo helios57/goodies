@@ -1,6 +1,7 @@
 package de.mtrail.goodies;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -21,7 +22,7 @@ public class GoodiesPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance
-	 * 
+	 *
 	 * @return the shared instance
 	 */
 	public static GoodiesPlugin getDefault() {
@@ -35,48 +36,35 @@ public class GoodiesPlugin extends AbstractUIPlugin {
 		plugin = this;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
+	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
-	public void stop(BundleContext context) throws Exception {
+	public void stop(final BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
 	}
 
 	/**
-	 * Logged das gegebene Throwable als Fehler.
-	 * 
-	 * @param throwable Throwable zum Loggen
+	 * Logs a given Throwable as Error by using {@link Plugin#getLog()}
+	 *
+	 * @param throwable the throwable to logged as error
 	 */
-	public void logError(Throwable throwable) {
+	public void logError(final Throwable throwable) {
 		getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, throwable.toString(), throwable));
 	}
 
 	/**
-	 * Liefert einen {@link ImageDescriptor} zu dem gegebenen Pfad.
-	 * 
-	 * @param path Pfad innerhalb des Plugins
-	 * @return zugehoeriger ImageDescriptor
+	 * Creates an {@link ImageDescriptor} from a string relative to this bundle
+	 * location.
+	 *
+	 * @param path relative path to the image.
+	 * @return an instance of {@link ImageDescriptor}.
 	 */
-	public ImageDescriptor getImageDescriptor(String path) {
-		ImageRegistry reg = getImageRegistry();
+	public ImageDescriptor getImageDescriptor(final String path) {
+		final ImageRegistry reg = getImageRegistry();
 		ImageDescriptor descr = reg.getDescriptor(path);
 		if (descr == null && reg.get(path) == null) {
 			reg.put(path, descr = imageDescriptorFromPlugin(getBundle().getSymbolicName(), path));
@@ -85,12 +73,13 @@ public class GoodiesPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Liefert das Bild mit dem gegebenen Pfad.
-	 * 
-	 * @param path Pfad innerhalb des Plugins
-	 * @return zugehoeriges Bild
+	 * Returns in Image instance by implicitly adding the desired
+	 * {@link ImageDescriptor} to the internal {@link ImageRegistry}.
+	 *
+	 * @param path Plug-in relative path to the image file.
+	 * @return a new or cached instance of the image.
 	 */
-	public Image getImage(String path) {
+	public Image getImage(final String path) {
 		getImageDescriptor(path);
 		return getImageRegistry().get(path);
 	}

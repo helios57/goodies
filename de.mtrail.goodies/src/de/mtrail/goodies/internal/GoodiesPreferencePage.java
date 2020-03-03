@@ -45,14 +45,14 @@ public class GoodiesPreferencePage extends FieldEditorPreferencePage implements 
 	@Override
 	public void createFieldEditors() {
 
-		Layout layout = getFieldEditorParent().getLayout();
+		final Layout layout = getFieldEditorParent().getLayout();
 		((GridLayout) layout).numColumns = 1;
 
-		Group group = new Group(getFieldEditorParent(), SWT.SHADOW_OUT);
+		final Group group = new Group(getFieldEditorParent(), SWT.SHADOW_OUT);
 		group.setText("Workspace Support");
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(group);
 
-		// Absoluter Pfad auf config
+		// Absolute path to the config
 		workspaceConfigLocationEditor = new StringFieldEditor(GoodiesPreferenceConstants.WORKSPACE_CONFIG_LOCATION,
 				"workspace.properties Location:", 70, group);
 		workspaceConfigLocationEditor.getLabelControl(group).setToolTipText(
@@ -61,34 +61,34 @@ public class GoodiesPreferencePage extends FieldEditorPreferencePage implements 
 				.setStringValue(getPreferenceStore().getString(GoodiesPreferenceConstants.WORKSPACE_CONFIG_LOCATION));
 		setUpField(workspaceConfigLocationEditor);
 
-		// Add fugly BrowseButton
-		Button browse = new Button(group, SWT.PUSH);
+		// Add the fugly BrowseButton
+		final Button browse = new Button(group, SWT.PUSH);
 		browse.setText("Browse ...");
 		browse.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 0));
 		browse.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.NULL);
+				final FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.NULL);
 				dialog.setFilterExtensions(new String[] { "*.properties;*.txt;*.*" });
-				String path = dialog.open();
+				final String path = dialog.open();
 				if (path != null) {
 					workspaceConfigLocationEditor.setStringValue(path);
 				}
 			}
 		});
 
-		// WorkingSets verwenden
+		// using WorkingSets?
 		workingSetEditor = new BooleanFieldEditor(GoodiesPreferenceConstants.USE_WORKING_SETS, "Use WorkingSets?",
 				group);
 		setUpField(workingSetEditor);
 
-		// Projekte automatisch importieren
+		// automatic import of missing projects?
 		importProjectsEditor = new BooleanFieldEditor(GoodiesPreferenceConstants.IMPORT_PROJECTS,
 				"Import missing projects automatically?", group);
 		setUpField(importProjectsEditor);
 
-		// Projekte automatisch importieren
+		// Import those projects marked as "open" in the properties?
 		importOpenOnlyProjectsEditor = new BooleanFieldEditor(GoodiesPreferenceConstants.IMPORT_OPEN_ONLY_PROJECTS,
 				"Import those projects being marked with \"open\" in the properties?", group);
 		setUpField(importOpenOnlyProjectsEditor);
@@ -117,7 +117,6 @@ public class GoodiesPreferencePage extends FieldEditorPreferencePage implements 
 
 	@Override
 	public void init(final IWorkbench workbench) {
-		// TODO Auto-generated method stub
 		/* intentionally empty */
 	}
 }
