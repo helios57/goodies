@@ -5,14 +5,9 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 public class PluginResolverTest {
-
-	@Before
-	public void before() {
-	}
 
 	@Test
 	public void testGetWorkspacePlugins() throws CoreException {
