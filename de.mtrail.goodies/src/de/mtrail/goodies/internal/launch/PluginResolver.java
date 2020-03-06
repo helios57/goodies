@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.pde.core.plugin.ModelEntry;
@@ -157,7 +158,8 @@ class PluginResolver {
 	 * Search the workspace for products using the naming convention.
 	 */
 	private IProduct findProduct(final String id) throws CoreException {
-		final IProject productProject = ResourcesPlugin.getWorkspace().getRoot().getProject(id);
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		final IProject productProject = root.getProject(id);
 		if (!productProject.exists()) {
 			return null;
 		}
