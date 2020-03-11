@@ -39,7 +39,6 @@ Contributors:
   <module>de.mtrail.goodies.feature</module>
   <module>de.mtrail.goodies.updatesite</module>
   <module>de.mtrail.goodies.product</module>
-  <module>de.mtrail.goodies.targetplatform</module>
 </modules>
 
 <build>
