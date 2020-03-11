@@ -36,6 +36,7 @@ Contributors:
 
  <modules>
   <module>de.mtrail.goodies</module>
+  <module>de.mtrail.goodies.test</module>
   <module>de.mtrail.goodies.feature</module>
   <module>de.mtrail.goodies.updatesite</module>
   <module>de.mtrail.goodies.product</module>
