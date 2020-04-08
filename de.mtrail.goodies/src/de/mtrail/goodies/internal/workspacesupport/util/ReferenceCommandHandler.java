@@ -38,10 +38,7 @@ public final class ReferenceCommandHandler extends AbstractHandler /* =see below
 	@Override
 	public boolean isEnabled() {
 		final IWorkspaceLaunch recentWorkspaceLaunch = LaunchManager.getInstance().getMostRecentWorkspaceLaunch();
-		if (recentWorkspaceLaunch != null) {
-			return recentWorkspaceLaunch.isEnabled();
-		}
-		return false;
+		return recentWorkspaceLaunch.isEnabled();
 	}
 
 	// Used later for menu/command/handler update propagations
