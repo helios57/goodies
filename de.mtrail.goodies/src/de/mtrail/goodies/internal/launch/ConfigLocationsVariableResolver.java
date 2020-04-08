@@ -36,7 +36,7 @@ public class ConfigLocationsVariableResolver extends AbstractPreferenceInitializ
 	@Override
 	public void initializeDefaultPreferences() {
 		final IPreferenceStore preferenceStore = GoodiesPlugin.getDefault().getPreferenceStore();
-		preferenceStore.setDefault(RCS_PROCESS_ENVIRONMENT, "environmnt"); //$NON-NLS-1$
+		preferenceStore.setDefault(RCS_PROCESS_ENVIRONMENT, "environment"); //$NON-NLS-1$
 		preferenceStore.setDefault(RCS_PROCESS_CLUSTER, "clustername"); //$NON-NLS-1$
 	}
 }
