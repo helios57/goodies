@@ -3,9 +3,13 @@ package de.mtrail.goodies.internal.workspacesupport.launch;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 
 /**
+ * Work In Progress
+ * <p>
  * The {@link LaunchManager} gets notified about launched
  * {@link IWorkspaceLaunch} items and puts these into a LaunchHistory. Users of
  * this class can read the LaunchHistory and can invoke previously added
@@ -16,6 +20,20 @@ public final class LaunchManager {
 
 	// Singleton stuff
 	private static final LaunchManager INSTANCE;
+
+	public static final IWorkspaceLaunch EMPTY_LAUNCH_LIST_ENTRY = new IWorkspaceLaunch() {
+
+		@Override
+		public Object launch(final ExecutionEvent event) throws ExecutionException {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public boolean isEnabled() {
+			return true;
+		}
+	};
+
 	static {
 		INSTANCE = new LaunchManager();
 	}
@@ -42,7 +60,16 @@ public final class LaunchManager {
 		recentlyUsed.add(0, aLaunch);
 	}
 
+	/**
+	 * Returns the most recent {@link IWorkspaceLaunch} entry.
+	 *
+	 * @return {@link #EMPTY_LAUNCH_LIST_ENTRY} if no item has been launched yet and
+	 *         the list is empty.
+	 */
 	public IWorkspaceLaunch getMostRecentWorkspaceLaunch() {
+		if (recentlyUsed.isEmpty()) {
+			return EMPTY_LAUNCH_LIST_ENTRY;
+		}
 		return recentlyUsed.get(0);
 	}
 }

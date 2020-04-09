@@ -1,5 +1,9 @@
 package de.mtrail.goodies;
 
+import static org.eclipse.jface.resource.ResourceLocator.imageDescriptorFromBundle;
+
+import java.util.Optional;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
@@ -9,29 +13,16 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-/**
- * The activator class controls the plug-in life cycle ue08113
- */
 public class GoodiesPlugin extends AbstractUIPlugin {
 
-	// The shared instance of the plug-in
 	private static GoodiesPlugin plugin;
 
-	/** The plug-in ID */
 	public static final String PLUGIN_ID = "de.mtrail.goodies"; //$NON-NLS-1$
 
-	/**
-	 * Returns the shared instance
-	 *
-	 * @return the shared instance
-	 */
 	public static GoodiesPlugin getDefault() {
 		return plugin;
 	}
 
-	/**
-	 * The constructor
-	 */
 	public GoodiesPlugin() {
 		plugin = this;
 	}
@@ -65,9 +56,12 @@ public class GoodiesPlugin extends AbstractUIPlugin {
 	 */
 	public ImageDescriptor getImageDescriptor(final String path) {
 		final ImageRegistry reg = getImageRegistry();
-		ImageDescriptor descr = reg.getDescriptor(path);
+		final ImageDescriptor descr = reg.getDescriptor(path);
 		if (descr == null && reg.get(path) == null) {
-			reg.put(path, descr = imageDescriptorFromPlugin(getBundle().getSymbolicName(), path));
+			final Optional<ImageDescriptor> optional = imageDescriptorFromBundle(getBundle().getSymbolicName(), path);
+			if (optional.isPresent()) {
+				reg.put(path, optional.get());
+			}
 		}
 		return descr;
 	}
@@ -83,5 +77,4 @@ public class GoodiesPlugin extends AbstractUIPlugin {
 		getImageDescriptor(path);
 		return getImageRegistry().get(path);
 	}
-
 }
