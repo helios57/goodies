@@ -2,6 +2,7 @@ package de.mtrail.goodies.contribution;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
@@ -32,6 +33,8 @@ import org.eclipse.ui.menus.WorkbenchWindowControlContribution;
 import org.osgi.framework.Bundle;
 
 import de.mtrail.goodies.GoodiesPlugin;
+import de.mtrail.goodies.contribution.model.Environment;
+import de.mtrail.goodies.contribution.model.EnvironmentPropertiesReader;
 import de.mtrail.goodies.internal.launch.ConfigLocationsVariableResolver;
 import de.mtrail.goodies.internal.launch.RcsServerProcessLaunchingPreferencePage;
 
@@ -47,14 +50,12 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 	private IPropertyChangeListener listener;
 	private Menu popupMenu;
 	private Label imageLabel;
-	private final String[] envs;
+	private final List<Environment> envs;
 	private static final String propertiesFileName = "goodies.properties";
 
 	public EnvironmentDisplayControl() {
 		final Properties goodieProperties = getProperties();
-		final String environmentList = goodieProperties.getProperty("environments");
-
-		this.envs = environmentList.split(",");
+		this.envs = EnvironmentPropertiesReader.read(goodieProperties);
 	}
 
 	private static Properties getProperties() {
@@ -124,12 +125,12 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 	private void createPopupMenu(final Label aLabel) {
 		popupMenu = new Menu(aLabel);
 
-		for (final String env : envs) {
+		for (final Environment env : envs) {
 			final MenuItem envItem = new MenuItem(popupMenu, SWT.NONE);
-			envItem.setText(env);
-			envItem.setImage(GoodiesPlugin.getDefault().getImage(getFlagImageName(env)));
-			envItem.addSelectionListener(new EnvSwitchAdapter(env));
-			popupMenu.addMenuListener(new EnvEnabledAdapter(env, envItem));
+			envItem.setText(env.getName() + " (" + env.getCluster() + ")");
+			envItem.setImage(GoodiesPlugin.getDefault().getImage(getFlagImageName(env.getName())));
+		    envItem.addSelectionListener(new EnvSwitchAdapter(env.getName(), env.getCluster()));
+		    popupMenu.addMenuListener(new EnvEnabledAdapter(env.getName(), envItem));
 		}
 		aLabel.setMenu(popupMenu);
 	}
@@ -172,11 +173,12 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 
 	private final static class EnvSwitchAdapter extends SelectionAdapter {
 
-		private static final String CLUSTER_PREFIX = getProperties().getProperty("cluster.prefix");
-		private final String env;
+		private final String name;
+		private final String cluster;
 
-		EnvSwitchAdapter(final String env) {
-			this.env = env;
+		EnvSwitchAdapter(final String name, final String cluster) {
+			this.name=name;
+			this.cluster=cluster;
 		}
 
 		@Override
@@ -184,8 +186,8 @@ public class EnvironmentDisplayControl extends WorkbenchWindowControlContributio
 			Display.getDefault().asyncExec(() -> {
 				final IPreferenceStore preferenceStore = GoodiesPlugin.getDefault().getPreferenceStore();
 				preferenceStore.setValue(ConfigLocationsVariableResolver.RCS_PROCESS_CLUSTER,
-						CLUSTER_PREFIX + env.toLowerCase());
-				preferenceStore.setValue(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT, env);
+						cluster);
+				preferenceStore.setValue(ConfigLocationsVariableResolver.RCS_PROCESS_ENVIRONMENT, name);
 			});
 		}
 	}
