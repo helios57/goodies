@@ -13,7 +13,7 @@
 	<packaging>eclipse-target-definition</packaging>
 
 	<parent>
-		<version>4.0.2-SNAPSHOT</version>
+		<version>4.0.3-SNAPSHOT</version>
 		<groupId>de.mtrail.goodies.group</groupId>
 		<artifactId>parent</artifactId>
 	</parent>

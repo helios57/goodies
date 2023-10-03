@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.mtrail.goodies
 Bundle-SymbolicName: de.mtrail.goodies;singleton:=true
-Bundle-Version: 4.0.2.qualifier
+Bundle-Version: 4.0.3.qualifier
 Bundle-Activator: de.mtrail.goodies.GoodiesPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text,
@@ -24,4 +24,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Gilles Iachelini, mtrail GmbH
 Bundle-ClassPath: .
 Import-Package: org.eclipse.jdt.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
